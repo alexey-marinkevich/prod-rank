@@ -9,8 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint --fix --cache src",
     "format": "prettier --write src",
-    "prepare": "husky install",
-    "precommit": "npm run format && npm run lint"
+    "prepare": "husky install"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -29,6 +28,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-tailwindcss": "^3.8.3",
     "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.3",
     "prettier-plugin-tailwindcss": "^0.2.2",
