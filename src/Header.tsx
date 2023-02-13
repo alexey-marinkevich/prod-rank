@@ -2,7 +2,7 @@ function Header() {
   return (
     <nav
       className="
-    grid h-14 grid-cols-2 place-content-center p-3
+    grid h-14 grid-cols-2 place-content-center p-2
     lg:grid-cols-3
     "
     >
