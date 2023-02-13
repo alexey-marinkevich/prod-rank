@@ -1,5 +1,7 @@
+import Header from './Header';
+
 function App() {
-  return <h1 className="text-3xl font-bold">App</h1>;
+  return <Header />;
 }
 
 export default App;
