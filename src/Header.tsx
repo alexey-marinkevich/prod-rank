@@ -16,7 +16,7 @@ function Header() {
       <div className="justify-self-end ">
         <Link
           to="/suggest"
-          className=" rounded-lg border-2 p-3 transition-colors hover:border-black hover:bg-black hover:text-white"
+          className="rounded-lg border-2 p-3 transition-colors hover:border-black hover:bg-black hover:text-white"
         >
           Suggest Product
         </Link>
