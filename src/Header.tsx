@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 function Header() {
   return (
-    <nav
+    <section
       className="
     grid h-14 grid-cols-2 place-content-center p-2
     lg:grid-cols-3
@@ -8,19 +9,19 @@ function Header() {
     >
       <div className="hidden lg:block"></div>
       <div className="lg:justify-self-center">
-        <a href="#" className="p-2">
+        <Link to="/" className="p-2">
           Logo
-        </a>
+        </Link>
       </div>
       <div className="justify-self-end ">
-        <a
-          href="#"
+        <Link
+          to="/suggest"
           className=" rounded-lg border-2 p-3 transition-colors hover:border-black hover:bg-black hover:text-white"
         >
           Suggest Product
-        </a>
+        </Link>
       </div>
-    </nav>
+    </section>
   );
 }
 
