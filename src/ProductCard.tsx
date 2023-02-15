@@ -10,7 +10,7 @@ function ProductCard() {
       <div
         className="
           h-3/4 w-full overflow-hidden rounded-3xl
-          lg:h-full lg:w-1/2
+          lg:h-full lg:w-4/6
         "
       >
         <div
@@ -20,9 +20,9 @@ function ProductCard() {
           "
         />
       </div>
-      <div className="p-3 pb-6 lg:w-1/2">
+      <div className="h-1/3 overflow-hidden p-3 pb-6 lg:h-auto lg:w-1/2">
         <h2 className="mb-1 text-2xl">Atom shoes</h2>
-        <p className="text-base">
+        <p className="h-4/5 overflow-hidden text-base lg:h-[93%]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur tempora fuga
           autem! Iusto repellendus natus nostrum suscipit modi odio quae veniam
           praesentium culpa quia necessitatibus ducimus totam, hic, laboriosam vel.
