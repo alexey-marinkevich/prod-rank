@@ -1,6 +1,5 @@
-import HomePage from './pages/HomePage';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { ErrorPage, SuggestProductPage } from './pages';
+import { HomePage, ErrorPage, SuggestProductPage, ProductPage } from './pages';
 
 const router = createBrowserRouter([
   {
@@ -11,6 +10,10 @@ const router = createBrowserRouter([
   {
     path: '/suggest',
     element: <SuggestProductPage />,
+  },
+  {
+    path: '/product/:id',
+    element: <ProductPage />,
   },
 ]);
 

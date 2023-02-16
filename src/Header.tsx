@@ -3,7 +3,7 @@ function Header() {
   return (
     <section
       className="
-    grid h-14 grid-cols-2 place-content-center p-2
+    grid h-14 grid-cols-[1fr,2fr] place-content-center p-2
     lg:grid-cols-3
     "
     >
