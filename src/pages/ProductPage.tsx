@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 function ProductPage() {
   return (
     <div>
-      <section className="grid">
+      <section className="grid max-w-screen-2xl lg:m-auto lg:grid-cols-[10fr,1fr] lg:grid-rows-[1fr,10fr]">
         <header
-          className="lg: z-50 col-start-1 row-start-1 h-32 p-8 px-2
+          className="lg: z-50 col-start-1 row-start-1 h-32 p-8 px-2 lg:col-end-3
            lg:h-auto lg:p-8"
         >
           {/* TODO: add multiple routes */}
@@ -13,14 +13,13 @@ function ProductPage() {
             Go back
           </Link>
         </header>
-        <h1 className="text-writing-mode hidden max-h-[920px] text-6xl font-semibold lg:block">
+        <h1 className="text-writing-mode hidden max-h-[1200px] p-12 text-center text-6xl font-semibold lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-3 lg:block">
           Atom Shoes
         </h1>
-        <article className="col-start-1 row-start-1 lg:row-start-2">
+        <article className="col-start-1 row-start-1 lg:col-start-1 lg:col-end-2 lg:row-start-2 lg:row-end-3 lg:flex lg:flex-col">
           <figure
             className='flex h-screen flex-col-reverse items-center bg-[url("https://cdn.shopify.com/s/files/1/0231/2060/9358/files/Home_BW_Closeup_1024x.jpg?v=1556563118")] bg-cover bg-center
-            lg:h-[80vh] lg:items-start
-          '
+            lg:h-[90vh] lg:items-start'
           >
             {/* icon */}
             <a
@@ -34,7 +33,7 @@ function ProductPage() {
           <h1 className="p-5 px-10 text-center text-4xl font-semibold lg:hidden">
             Atoms Shoes
           </h1>
-          <p className="m-auto max-w-2xl p-2 pb-8 text-lg lg:p-10">
+          <p className="m-auto max-w-3xl p-2 pb-8 text-lg lg:relative lg:left-20 lg:p-10">
             Atoms may look simple, but they’re packed with features. Our elastic laces
             mean you only have to tie your shoes once. We developed a custom foam midsole
             that molds to your feet, making them even more comfortable with every wear.
@@ -45,7 +44,7 @@ function ProductPage() {
       </section>
       <section className="mb-24 flex items-end gap-2 overflow-x-scroll px-1">
         <img
-          className="max-h-[80vh] max-w-none rounded-xl object-contain"
+          className="h-[80vh] max-h-[600px] max-w-none rounded-xl object-contain"
           src="https://cdn.shopify.com/s/files/1/0231/2060/9358/files/Home_BW_Closeup_1024x.jpg?v=1556563118"
           alt="Product Image"
         />
