@@ -13,12 +13,13 @@ function ProductPage() {
             Go back
           </Link>
         </header>
-        <h1 className="text-writing-mode hidden max-h-[1200px] p-12 text-center text-6xl font-semibold lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-3 lg:block">
+        <h1 className="text-writing-mode hidden max-h-[1200px] p-12 text-center text-6xl font-semibold lg:col-[2_/_3] lg:row-[1_/_3] lg:block">
           Atom Shoes
         </h1>
-        <article className="col-start-1 row-start-1 lg:col-start-1 lg:col-end-2 lg:row-start-2 lg:row-end-3 lg:flex lg:flex-col">
+        <article className="col-start-1 row-start-1 lg:col-[1_/_2] lg:row-[2_/_3] lg:flex lg:flex-col">
           <figure
-            className='flex h-screen flex-col-reverse items-center bg-[url("https://cdn.shopify.com/s/files/1/0231/2060/9358/files/Home_BW_Closeup_1024x.jpg?v=1556563118")] bg-cover bg-center
+            className='flex h-screen flex-col-reverse items-center
+            bg-[url("https://cdn.shopify.com/s/files/1/0231/2060/9358/files/Home_BW_Closeup_1024x.jpg?v=1556563118")] bg-cover bg-center
             lg:h-[90vh] lg:items-start'
           >
             {/* icon */}
@@ -49,17 +50,17 @@ function ProductPage() {
           alt="Product Image"
         />
         <img
-          className="max-h-[80vh] max-w-none rounded-xl object-contain"
+          className="h-[80vh] max-h-[600px] max-w-none rounded-xl object-contain"
           src="https://cdn.shopify.com/s/files/1/0231/2060/9358/files/Home_Gray_Loft_600x.jpg?v=1557771826"
           alt="Product Image"
         />
         <img
-          className="max-h-[80vh] max-w-none rounded-xl object-contain"
+          className="h-[80vh] max-h-[600px] max-w-none rounded-xl object-contain"
           src="https://cdn.shopify.com/s/files/1/0231/2060/9358/files/Home_BW_Closeup_1024x.jpg?v=1556563118"
           alt="Product Image"
         />
         <img
-          className="max-h-[80vh] max-w-none rounded-xl object-contain"
+          className="h-[80vh] max-h-[600px] max-w-none rounded-xl object-contain"
           src="https://cdn.shopify.com/s/files/1/0231/2060/9358/files/Home_Gray_Loft_600x.jpg?v=1557771826"
           alt="Product Image"
         />
