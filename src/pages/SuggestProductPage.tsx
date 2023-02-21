@@ -1,17 +1,87 @@
-import { Form, Link } from 'react-router-dom';
+import { Form, Link, redirect, useNavigate } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
+
+import supabase from '../supabase';
+
+let headImgFile: File | null;
+let galleryFiles: FileList | null;
+
+type CreateProduct = {
+  productName: FormDataEntryValue;
+  productSite: FormDataEntryValue;
+  articleContent: FormDataEntryValue;
+  headImage: string;
+  gallery: string[];
+};
+
+export async function suggestProductAction({ request }: { request: Request }) {
+  const { name, siteUrl, description } = Object.fromEntries(await request.formData());
+  const submission: CreateProduct = {
+    productName: name,
+    productSite: siteUrl,
+    articleContent: description,
+    headImage: '',
+    gallery: [],
+  };
+
+  // upload headImg to bucket
+  if (headImgFile) {
+    const { data, error } = await supabase.storage
+      .from('product-images')
+      .upload(uuid(), headImgFile);
+    // Handle any errors
+    if (error) {
+      console.error(error);
+      return null;
+    }
+    submission.headImage = data?.path;
+  }
+
+  // receive all productImages
+  async function uploadImage(file: File) {
+    const { data, error } = await supabase.storage
+      .from('product-images')
+      .upload(uuid(), file);
+    if (error) {
+      throw error;
+    }
+
+    submission.gallery?.push(data.path);
+  }
+
+  if (galleryFiles?.length) {
+    const galleryArray = Array.from(galleryFiles);
+    await Promise.all(
+      galleryArray.map(async (file) => {
+        await uploadImage(file);
+      })
+    );
+  }
+  // create new item in db with submission params
+  const { error } = await supabase.from('products').insert(submission);
+  if (error) {
+    console.error(error);
+    throw new Error("Product wasn't saved");
+  }
+
+  return redirect('/');
+}
 
 function SuggestProductPage() {
+  const navigate = useNavigate();
   return (
     <div className="m-auto mb-20 max-w-5xl p-2 md:p-5">
       <section className="mb-20 grid items-center sm:grid-cols-2">
-        <Link to="/">Back</Link>
+        <button onClick={() => navigate(-1)} className="max-w-xs text-start">
+          Back
+        </button>
         <h1 className="text-lg md:text-right">
           Place where you can suggest interesting and good quality products of small or
           less popular companies to share with others and get to know about it more range
           of people
         </h1>
       </section>
-      <Form>
+      <Form method="post" action="/suggest">
         <section className="mb-10">
           <h2 className="mb-4 text-2xl">Main Data</h2>
           <div className="grid gap-4 gap-y-8 sm:grid-cols-2">
@@ -27,7 +97,7 @@ function SuggestProductPage() {
               <p className="absolute top-[-13px] left-4 bg-white px-1">Product Site</p>
               <input
                 type="text"
-                name="site"
+                name="siteUrl"
                 className="w-full rounded-md border-2 border-gray-400 p-3"
               />
             </label>
@@ -38,6 +108,7 @@ function SuggestProductPage() {
                 name="headImage"
                 accept="image/x-png,image/jpeg"
                 className="col-span-2 w-full rounded-md border-2 border-gray-400 p-3"
+                onChange={(e) => (headImgFile = e.target.files && e.target.files[0])}
               />
             </label>
             <label className="relative sm:col-span-2">
@@ -58,7 +129,13 @@ function SuggestProductPage() {
             directly from the product site or other high quality site
           </p>
           <div className="">
-            <input type="file" name="images" accept="image/x-png,image/jpeg" multiple />
+            <input
+              type="file"
+              name="images"
+              accept="image/x-png,image/jpeg"
+              multiple
+              onChange={(e) => (galleryFiles = e.target.files)}
+            />
             {/* here will be gallery */}
           </div>
         </section>
