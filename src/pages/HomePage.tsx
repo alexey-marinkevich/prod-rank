@@ -1,11 +1,11 @@
+import { Outlet } from 'react-router-dom';
 import Header from '../Header';
-import ProductsSection from '../ProductsSection';
 
 function HomePage() {
   return (
     <>
       <Header />
-      <ProductsSection />
+      <Outlet />
     </>
   );
 }

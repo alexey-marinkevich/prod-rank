@@ -73,7 +73,7 @@ function ProductPage() {
               text-center text-white backdrop-blur-md transition-all duration-500
               hover:border-gray-300 hover:bg-white/40 hover:text-black hover:shadow-md sm:max-w-xs lg:max-w-[150px]"
             >
-              Explore Site
+              Explore Product
             </a>
           </figure>
           <h1 className="p-5 px-10 text-center text-4xl font-semibold lg:hidden">
