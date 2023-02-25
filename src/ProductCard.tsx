@@ -13,7 +13,7 @@ function ProductCard({ props }: { props: Product }) {
       to={`/product/${id}`}
       className="
         group flex h-[600px] flex-col overflow-hidden rounded-3xl shadow-md transition-[transform,box-shadow] duration-500
-        hover:scale-95 hover:shadow-xl lg:h-[400px] lg:flex-row
+        hover:scale-95 hover:shadow-xl lg:h-[430px] lg:flex-row
       "
     >
       <div
