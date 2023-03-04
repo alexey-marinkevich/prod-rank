@@ -1,5 +1,6 @@
 import { Params, useLoaderData, useNavigate } from 'react-router-dom';
 import { GoGlobe } from 'react-icons/go';
+import { IoIosArrowRoundBack } from 'react-icons/io';
 
 import supabase from '../supabase';
 
@@ -50,11 +51,24 @@ function ProductPage() {
     <div>
       <section className="grid max-w-screen-2xl lg:m-auto lg:grid-cols-[10fr,1fr] lg:grid-rows-[1fr,10fr]">
         <header
-          className="z-50 col-start-1 row-start-1 h-32 lg:col-end-3
-           lg:h-auto"
+          className="z-50 col-start-1 row-start-1 h-32 p-2
+          lg:col-end-3 lg:flex lg:h-auto lg:items-center lg:p-0"
         >
-          <button className="px-2 py-8 sm:p-8" onClick={() => navigate(-1)}>
-            Go back
+          <button
+            className="rounded-lg border border-gray-700 bg-black/70 p-2 text-4xl text-white
+            backdrop-blur-md transition-all duration-500 hover:border-gray-300
+          hover:bg-white/40 hover:text-black hover:shadow-md lg:hidden"
+            onClick={() => navigate(-1)}
+          >
+            <IoIosArrowRoundBack />
+          </button>
+
+          {/* button for large displays */}
+          <button
+            className="hidden p-4 text-7xl text-black transition-all hover:-translate-x-2 lg:block"
+            onClick={() => navigate(-1)}
+          >
+            <IoIosArrowRoundBack />
           </button>
         </header>
         <h1
@@ -68,7 +82,6 @@ function ProductPage() {
             className="flex h-screen flex-col-reverse items-center bg-cover bg-center lg:h-[90vh] lg:items-start"
             style={{ backgroundImage: `url(${BASE_IMG_URL + headImage})` }}
           >
-            {/* todo: add icon */}
             <a
               href={productSite}
               target="_blank"
