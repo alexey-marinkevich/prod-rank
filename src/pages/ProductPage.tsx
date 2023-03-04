@@ -48,10 +48,12 @@ function ProductPage() {
     <div>
       <section className="grid max-w-screen-2xl lg:m-auto lg:grid-cols-[10fr,1fr] lg:grid-rows-[1fr,10fr]">
         <header
-          className="lg: z-50 col-start-1 row-start-1 h-32 p-8 px-2 lg:col-end-3
-           lg:h-auto lg:p-8"
+          className="z-50 col-start-1 row-start-1 h-32 lg:col-end-3
+           lg:h-auto"
         >
-          <button onClick={() => navigate(-1)}>Go back</button>
+          <button className="px-2 py-8 sm:p-8" onClick={() => navigate(-1)}>
+            Go back
+          </button>
         </header>
         <h1
           className="text-writing-mode hidden max-h-[1200px] p-12 text-center text-6xl font-semibold
