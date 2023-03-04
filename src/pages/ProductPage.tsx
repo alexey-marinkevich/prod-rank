@@ -1,4 +1,6 @@
 import { Params, useLoaderData, useNavigate } from 'react-router-dom';
+import { GoGlobe } from 'react-icons/go';
+
 import supabase from '../supabase';
 
 export async function getProduct({ params }: { params: Params }) {
@@ -71,11 +73,12 @@ function ProductPage() {
               href={productSite}
               target="_blank"
               rel="noreferrer"
-              className="m-14 w-11/12 rounded-lg border border-gray-700 bg-black/70 p-3
-              text-center text-white backdrop-blur-md transition-all duration-500
-              hover:border-gray-300 hover:bg-white/40 hover:text-black hover:shadow-md sm:max-w-xs lg:max-w-[150px]"
+              className="m-14 flex w-11/12 items-center justify-center gap-2 rounded-lg border border-gray-700 bg-black/70 p-3 text-center
+              align-baseline text-white backdrop-blur-md transition-all duration-500
+              hover:border-gray-300 hover:bg-white/40 hover:text-black hover:shadow-md sm:max-w-xs lg:max-w-xs"
             >
-              Explore Product
+              <GoGlobe className="text-2xl" />
+              <p>Explore Product</p>
             </a>
           </figure>
           <h1 className="p-5 px-10 text-center text-4xl font-semibold lg:hidden">
