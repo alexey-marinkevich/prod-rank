@@ -29,7 +29,7 @@ export async function suggestProductAction({ request }: { request: Request }) {
     const { data, error } = await supabase.storage
       .from('product-images')
       .upload(uuid(), headImgFile);
-    // Handle any errors
+
     if (error) {
       console.error(error);
       return null;
@@ -64,7 +64,7 @@ export async function suggestProductAction({ request }: { request: Request }) {
     throw new Error("Product wasn't saved");
   }
 
-  return redirect('/');
+  return redirect('/0');
 }
 
 function SuggestProductPage() {
@@ -101,14 +101,26 @@ function SuggestProductPage() {
                 className="w-full rounded-md border-2 border-gray-400 p-3"
               />
             </label>
-            <label className="relative">
-              <p className="absolute top-[-13px] left-4 bg-white px-1">Main Image</p>
+            <label>
+              <p className="mb-2">Main Image</p>
+              <div className="flex items-center gap-4">
+                <a className="block cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95 md:w-1/2">
+                  Select Image
+                </a>
+                <p id="main-image-confirm" className="hidden text-green-500">
+                  Image selected
+                </p>
+              </div>
               <input
                 type="file"
                 name="headImage"
                 accept="image/x-png,image/jpeg"
-                className="col-span-2 w-full rounded-md border-2 border-gray-400 p-3"
-                onChange={(e) => (headImgFile = e.target.files && e.target.files[0])}
+                className="col-span-2 hidden w-full rounded-md border-2 border-gray-400 p-3"
+                onChange={(e) => {
+                  headImgFile = e.target.files && e.target.files[0];
+                  const img = document.querySelector('#main-image-confirm');
+                  img?.classList.remove('hidden');
+                }}
               />
             </label>
             <label className="relative sm:col-span-2">
@@ -122,27 +134,31 @@ function SuggestProductPage() {
             </label>
           </div>
         </section>
-        <section className="mb-10">
+        <section className="mb-20">
           <h2 className="mb-4 text-2xl">Image Gallery</h2>
-          <p className="md: max-w-lg">
+          <p className="mb-2 sm:max-w-lg">
             Additional images to show more about product. Recommend to paste image url
             directly from the product site or other high quality site
           </p>
-          <div className="">
+          <label>
+            <a className="block cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95 sm:w-1/4">
+              Select Images
+            </a>
             <input
               type="file"
               name="images"
               accept="image/x-png,image/jpeg"
               multiple
               onChange={(e) => (galleryFiles = e.target.files)}
+              className="hidden"
             />
             {/* here will be gallery */}
-          </div>
+          </label>
         </section>
         <section className="m-auto grid gap-2 text-center sm:max-w-xs">
           <button
             type="submit"
-            className="rounded-lg border-2 bg-gray-800 p-3 text-white transition-colors hover:border-black hover:bg-black"
+            className="rounded-lg bg-black p-3 text-white transition-colors hover:bg-gray-800"
           >
             Submit
           </button>
