@@ -89,7 +89,7 @@ function ProductPage() {
           return (
             <img
               key={gallery.indexOf(imageUrl)}
-              className="h-[80vh] max-h-[600px] max-w-none rounded-xl object-contain"
+              className="max-h-[600px] rounded-xl object-contain"
               src={BASE_IMG_URL + imageUrl}
               alt="Product Image"
             />
