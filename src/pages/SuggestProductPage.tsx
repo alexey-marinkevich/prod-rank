@@ -1,3 +1,4 @@
+import { IoIosArrowRoundBack } from 'react-icons/io';
 import { Form, Link, redirect, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
@@ -72,8 +73,11 @@ function SuggestProductPage() {
   return (
     <div className="m-auto mb-20 max-w-5xl p-2 md:p-5">
       <section className="mb-20 grid items-center sm:grid-cols-2">
-        <button onClick={() => navigate(-1)} className="max-w-xs text-start">
-          Back
+        <button
+          className="w-32 p-4 pl-0 text-7xl text-black transition-all hover:-translate-x-2"
+          onClick={() => navigate(-1)}
+        >
+          <IoIosArrowRoundBack />
         </button>
         <h1 className="text-lg md:text-right">
           Place where you can suggest interesting and good quality products of small or
