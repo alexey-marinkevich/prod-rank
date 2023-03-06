@@ -1,10 +1,11 @@
-import { Params, useLoaderData, useNavigate } from 'react-router-dom';
+import { Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 import { GoGlobe } from 'react-icons/go';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 
 import supabase from '../supabase';
+import { PageLoader } from '../loadingComponents';
 
-export async function getProduct({ params }: { params: Params }) {
+export async function productLoader({ params }: { params: Params }) {
   const { id } = params;
 
   const { data: item, error } = await supabase
@@ -39,6 +40,7 @@ function ProductPage() {
   const BASE_IMG_URL =
     'https://qfwsyrybrxidfdqfjkui.supabase.co/storage/v1/object/public/product-images/';
   const navigate = useNavigate();
+  const navigation = useNavigation();
   const {
     articleContent,
     // created_at,  todo: Add date of creation
@@ -46,7 +48,12 @@ function ProductPage() {
     headImage,
     productName,
     productSite,
-  }: Product = useLoaderData() as Awaited<ReturnType<typeof getProduct>>; // router has an issue here, temporary solution
+  }: Product = useLoaderData() as Awaited<ReturnType<typeof productLoader>>; // router has an issue here, temporary solution
+
+  if (navigation.state === 'loading') {
+    return <PageLoader />;
+  }
+
   return (
     <div>
       <section className="grid max-w-screen-2xl lg:m-auto lg:grid-cols-[10fr,1fr] lg:grid-rows-[1fr,10fr]">

@@ -5,7 +5,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { HomePage, ErrorPage, SuggestProductPage, ProductPage } from './pages';
-import { getProduct } from './pages/ProductPage';
+import { productLoader } from './pages/ProductPage';
 import { suggestProductAction } from './pages/SuggestProductPage';
 import ProductsSection, { productsLoader } from './ProductsSection';
 
@@ -20,7 +20,7 @@ const router = createBrowserRouter(
         element={<SuggestProductPage />}
         action={suggestProductAction}
       />
-      <Route path="/product/:id" element={<ProductPage />} loader={getProduct} />
+      <Route path="/product/:id" element={<ProductPage />} loader={productLoader} />
     </Route>
   )
 );
