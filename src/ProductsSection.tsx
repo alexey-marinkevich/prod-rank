@@ -1,12 +1,13 @@
 import ReactPaginate from 'react-paginate';
-import { Params, useLoaderData, useNavigate } from 'react-router-dom';
+import { Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
+import { PageLoader } from './loadingComponents';
 import { Product } from './pages/ProductPage';
 import ProductCard from './ProductCard';
 import supabase from './supabase';
 
-const perPage = 10;
+const perPage = 1;
 
-export async function getProducts({ params }: { params: Params }) {
+export async function productsLoader({ params }: { params: Params }) {
   const page = Number(params.page);
   const fromItem = page * perPage;
   const toItem = fromItem + perPage - 1;
@@ -28,9 +29,10 @@ export async function getProducts({ params }: { params: Params }) {
 
 function ProductsSection() {
   const { products, count, page } = useLoaderData() as Awaited<
-    ReturnType<typeof getProducts>
+    ReturnType<typeof productsLoader>
   >; // router has an issue here, temporary solution;
   const navigate = useNavigate();
+  const navigation = useNavigation();
 
   const pagesCount: number = Math.ceil(Number(count) / perPage);
 
@@ -44,11 +46,15 @@ function ProductsSection() {
 
   return (
     <>
-      <section className="m-auto grid max-w-7xl gap-5 px-2 py-7 md:grid-cols-2 lg:grid-cols-1">
-        {products.map((product: Product) => {
-          return <ProductCard key={product.id} props={product} />;
-        })}
-      </section>
+      {navigation.state === 'loading' ? (
+        <PageLoader />
+      ) : (
+        <section className="m-auto grid max-w-7xl gap-5 px-2 py-7 md:grid-cols-2 lg:grid-cols-1">
+          {products.map((product: Product) => {
+            return <ProductCard key={product.id} props={product} />;
+          })}
+        </section>
+      )}
       <ReactPaginate
         pageCount={pagesCount}
         initialPage={page}

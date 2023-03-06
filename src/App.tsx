@@ -7,13 +7,13 @@ import {
 import { HomePage, ErrorPage, SuggestProductPage, ProductPage } from './pages';
 import { getProduct } from './pages/ProductPage';
 import { suggestProductAction } from './pages/SuggestProductPage';
-import ProductsSection, { getProducts } from './ProductsSection';
+import ProductsSection, { productsLoader } from './ProductsSection';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<ErrorPage />}>
       <Route path="/" element={<HomePage />}>
-        <Route path="/:page" element={<ProductsSection />} loader={getProducts} />
+        <Route path="/:page" element={<ProductsSection />} loader={productsLoader} />
       </Route>
       <Route
         path="/suggest"
