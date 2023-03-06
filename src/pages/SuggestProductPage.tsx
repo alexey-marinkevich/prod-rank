@@ -3,6 +3,7 @@ import { IoIosArrowRoundBack } from 'react-icons/io';
 import { Form, Link, redirect, useNavigate, useNavigation } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
+import { IoCheckmarkCircleOutline, IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
 
 import supabase from '../supabase';
 
@@ -130,12 +131,11 @@ function SuggestProductPage() {
                   ) : (
                     <a className="block w-full cursor-pointer rounded-lg bg-green-600 p-3 text-center text-white transition-all hover:scale-95">
                       <span className="flex w-full items-center justify-center gap-2">
-                        <HiOutlineCheckCircle className="text-2xl" />
+                        <IoCheckmarkCircleOutline className="text-2xl" />
                         <p>Image selected</p>
                       </span>
                     </a>
                   )}
-
                   <input
                     type="file"
                     name="headImage"
@@ -143,7 +143,7 @@ function SuggestProductPage() {
                     className="col-span-2 hidden w-full rounded-md border-2 border-gray-400 p-3"
                     onChange={(e) => {
                       headImgFile = e.target.files && e.target.files[0];
-                      setImgSelected({ headImg: true });
+                      setImgSelected((prevState) => ({ ...prevState, headImg: true }));
                     }}
                   />
                 </label>
@@ -165,20 +165,32 @@ function SuggestProductPage() {
               Additional images to show more about product. Recommend to paste image url
               directly from the product site or other high quality site
             </p>
-            <label>
-              <a className="block cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95 sm:w-1/4">
-                Select Images
-              </a>
+            <label className="block w-1/4">
+              {!imgSelected.gallery ? (
+                <a className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95">
+                  Select Images
+                </a>
+              ) : (
+                <a className="block w-full cursor-pointer rounded-lg bg-green-600 p-3 text-center text-white transition-all hover:scale-95">
+                  <span className="flex w-full items-center justify-center gap-2">
+                    <IoCheckmarkDoneCircleOutline className="text-2xl" />
+                    <p>Images selected</p>
+                  </span>
+                </a>
+              )}
               <input
                 type="file"
                 name="images"
                 accept="image/x-png,image/jpeg"
                 multiple
-                onChange={(e) => (galleryFiles = e.target.files)}
+                onChange={(e) => {
+                  galleryFiles = e.target.files;
+                  setImgSelected((prevState) => ({ ...prevState, gallery: true }));
+                }}
                 className="hidden"
               />
-              {/* here will be gallery */}
             </label>
+            {/* here will be gallery */}
           </section>
           <section className="m-auto grid gap-2 text-center sm:max-w-xs">
             <button
