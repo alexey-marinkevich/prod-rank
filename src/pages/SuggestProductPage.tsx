@@ -123,14 +123,14 @@ function SuggestProductPage() {
               </label>
               <div>
                 <p className="mb-2">Main Image</p>
-                <label className="inline-block w-1/2">
+                <label className="inline-block w-full sm:w-[250px]">
                   {!imgSelected.headImg ? (
                     <a className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95">
                       Select Image
                     </a>
                   ) : (
                     <a className="block w-full cursor-pointer rounded-lg bg-green-600 p-3 text-center text-white transition-all hover:scale-95">
-                      <span className="flex w-full items-center justify-center gap-2">
+                      <span className="flex w-full items-center justify-center gap-1">
                         <IoCheckmarkCircleOutline className="text-2xl" />
                         <p>Image selected</p>
                       </span>
@@ -165,16 +165,16 @@ function SuggestProductPage() {
               Additional images to show more about product. Recommend to paste image url
               directly from the product site or other high quality site
             </p>
-            <label className="block w-1/4">
+            <label className="block w-full sm:w-[250px]">
               {!imgSelected.gallery ? (
                 <a className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95">
                   Select Images
                 </a>
               ) : (
                 <a className="block w-full cursor-pointer rounded-lg bg-green-600 p-3 text-center text-white transition-all hover:scale-95">
-                  <span className="flex w-full items-center justify-center gap-2">
+                  <span className="flex w-full items-center justify-center gap-1">
                     <IoCheckmarkDoneCircleOutline className="text-2xl" />
-                    <p>Images selected</p>
+                    <p>Images selected ({galleryFiles?.length})</p>
                   </span>
                 </a>
               )}
