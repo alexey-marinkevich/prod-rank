@@ -16,7 +16,7 @@ function Header() {
       >
         <SiStarship
           className=" text-4xl transition-all duration-500 ease-in-out
-          group-hover:scale-110 lg:text-5xl"
+          group-hover:scale-110 group-hover:text-red-700 lg:text-5xl"
         />
 
         <p className="font-medium">Prod-Rank</p>
