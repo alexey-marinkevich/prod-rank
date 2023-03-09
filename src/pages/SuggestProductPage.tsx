@@ -94,10 +94,16 @@ function SuggestProductPage() {
         >
           <IoIosArrowRoundBack />
         </button>
-        <h1 className="text-lg md:text-right">
+        <h1 className="relative text-lg md:text-right">
           Place where you can suggest interesting and good quality products of small or
           less popular companies to share with others and get to know about it more range
           of people
+          <span
+            className="text-writing-mode absolute top-0 -right-28 -z-50 hidden whitespace-nowrap text-[120px]
+            font-extrabold text-neutral-200 lg:block"
+          >
+            Suggest Product
+          </span>
         </h1>
       </section>
       <Form method="post" action="/suggest">
