@@ -12,6 +12,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.11",
     "@supabase/supabase-js": "^2.8.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/uuid": "^9.0.0",
