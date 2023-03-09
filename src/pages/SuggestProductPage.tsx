@@ -3,6 +3,7 @@ import { IoIosArrowRoundBack } from 'react-icons/io';
 import { Form, Link, redirect, useNavigate, useNavigation } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { IoCheckmarkCircleOutline, IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
+import { CgSpinner } from 'react-icons/cg';
 
 import supabase from '../supabase';
 
@@ -196,7 +197,14 @@ function SuggestProductPage() {
               type="submit"
               className="rounded-lg bg-black p-3 text-white transition-colors hover:bg-gray-800"
             >
-              Submit
+              {navigation.state === 'submitting' ? (
+                <span className="flex items-center justify-center gap-2">
+                  <CgSpinner className="animate-spin text-2xl" />
+                  <p>Submitting...</p>
+                </span>
+              ) : (
+                'Submit'
+              )}
             </button>
             <Link
               to="products/:id"
