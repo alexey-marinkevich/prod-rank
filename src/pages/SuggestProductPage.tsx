@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { Form, Link, redirect, useNavigate, useNavigation } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import { HiOutlineCheckCircle } from 'react-icons/hi';
 import { IoCheckmarkCircleOutline, IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
 
 import supabase from '../supabase';
@@ -124,7 +123,7 @@ function SuggestProductPage() {
               <div>
                 <p className="mb-2">Main Image</p>
                 <label className="inline-block w-full sm:w-[250px]">
-                  {!imgSelected.headImg ? (
+                  {!imgSelected.headImg || !headImgFile ? (
                     <a className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95">
                       Select Image
                     </a>
@@ -166,7 +165,7 @@ function SuggestProductPage() {
               directly from the product site or other high quality site
             </p>
             <label className="block w-full sm:w-[250px]">
-              {!imgSelected.gallery ? (
+              {!imgSelected.gallery || !galleryFiles?.length ? (
                 <a className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95">
                   Select Images
                 </a>
