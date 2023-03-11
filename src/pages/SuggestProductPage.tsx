@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import { IoIosArrowRoundBack } from 'react-icons/io';
-import { Form, Link, redirect, useNavigate, useNavigation } from 'react-router-dom';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import { v4 as uuid } from 'uuid';
+
+import { Link, redirect, useNavigate, useNavigation, useSubmit } from 'react-router-dom';
+import { IoIosArrowRoundBack } from 'react-icons/io';
 import { IoCheckmarkCircleOutline, IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
 import { CgSpinner } from 'react-icons/cg';
 
@@ -79,11 +83,33 @@ type ImgSelected = {
 function SuggestProductPage() {
   const navigate = useNavigate();
   const navigation = useNavigation();
+  const submit = useSubmit();
+
+  const schema = yup
+    .object({
+      name: yup.string().required().trim().max(50),
+      siteUrl: yup.string().url().required().trim(),
+      description: yup.string().required().trim().min(50),
+    })
+    .required();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CreateProduct>({
+    resolver: yupResolver(schema),
+  });
 
   const [imgSelected, setImgSelected] = useState<ImgSelected>({
     headImg: false,
     gallery: false,
   });
+
+  const onSubmit = (data) => {
+    console.log(data);
+    submit(data, { action: '/suggest', method: 'post' });
+  };
 
   return (
     <div className="m-auto mb-20 max-w-5xl p-2 md:p-5">
@@ -106,7 +132,8 @@ function SuggestProductPage() {
           </span>
         </h1>
       </section>
-      <Form method="post" action="/suggest">
+      {/* <form method="post" action="/suggest"> */}
+      <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset disabled={navigation.state === 'submitting'}>
           <section className="mb-10">
             <h2 className="mb-4 text-2xl">Main Data</h2>
@@ -115,22 +142,29 @@ function SuggestProductPage() {
                 <p className="absolute top-[-13px] left-4 bg-white px-1">Product Name</p>
                 <input
                   type="text"
-                  name="name"
-                  className="w-full rounded-md border-2 border-gray-400 p-3"
+                  {...register('productName')}
+                  required={!!errors.productName?.message}
+                  autoFocus
+                  className="w-full rounded-md border-[3px] border-gray-400 p-3 outline-none required:border-red-500
+                 focus:border-black invalid:focus:border-red-500"
                 />
+                <p className="text-red-500 empty:hidden">{errors.productName?.message}</p>
               </label>
               <label className="relative">
                 <p className="absolute top-[-13px] left-4 bg-white px-1">Product Site</p>
                 <input
                   type="text"
-                  name="siteUrl"
-                  className="w-full rounded-md border-2 border-gray-400 p-3"
+                  required={!!errors.productSite?.message}
+                  {...register('productSite')}
+                  className="w-full rounded-md border-[3px] border-gray-400 p-3 outline-none
+                 required:border-red-500 focus:border-black invalid:focus:border-red-500"
                 />
+                <p className="text-red-500 empty:hidden">{errors.productSite?.message}</p>
               </label>
               <div>
                 <p className="mb-2">Main Image</p>
                 <label className="inline-block w-full sm:w-[250px]">
-                  {!imgSelected.headImg || !headImgFile ? (
+                  {!headImgFile ? (
                     <a className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95">
                       Select Image
                     </a>
@@ -144,9 +178,9 @@ function SuggestProductPage() {
                   )}
                   <input
                     type="file"
-                    name="headImage"
+                    {...register('headImage')}
                     accept="image/x-png,image/jpeg"
-                    className="col-span-2 hidden w-full rounded-md border-2 border-gray-400 p-3"
+                    className="hidden"
                     onChange={(e) => {
                       headImgFile = e.target.files && e.target.files[0];
                       setImgSelected((prevState) => ({ ...prevState, headImg: true }));
@@ -159,9 +193,14 @@ function SuggestProductPage() {
                   Product Description
                 </p>
                 <textarea
-                  name="description"
-                  className="min-h-[300px] w-full resize-none rounded-md border-2 border-gray-400 p-3 sm:min-h-[200px]"
+                  {...register('articleContent')}
+                  required={!!errors.articleContent?.message}
+                  className="min-h-[300px] w-full resize-none rounded-md border-[3px] border-gray-400 p-3 outline-none required:border-red-500
+                  focus:border-black invalid:focus:border-red-500 sm:min-h-[200px]"
                 />
+                <p className="text-red-500 empty:hidden">
+                  {errors.articleContent?.message}
+                </p>
               </label>
             </div>
           </section>
@@ -172,7 +211,7 @@ function SuggestProductPage() {
               directly from the product site or other high quality site
             </p>
             <label className="block w-full sm:w-[250px]">
-              {!imgSelected.gallery || !galleryFiles?.length ? (
+              {!galleryFiles?.length ? (
                 <a className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95">
                   Select Images
                 </a>
@@ -186,8 +225,8 @@ function SuggestProductPage() {
               )}
               <input
                 type="file"
-                name="images"
                 accept="image/x-png,image/jpeg"
+                {...register('gallery')}
                 multiple
                 onChange={(e) => {
                   galleryFiles = e.target.files;
@@ -220,7 +259,7 @@ function SuggestProductPage() {
             </Link>
           </section>
         </fieldset>
-      </Form>
+      </form>
     </div>
   );
 }
