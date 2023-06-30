@@ -106,7 +106,7 @@ function SuggestProductPage() {
     gallery: false,
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     console.log(data);
     submit(data, { action: '/suggest', method: 'post' });
   };
