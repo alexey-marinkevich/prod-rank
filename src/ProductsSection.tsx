@@ -5,7 +5,7 @@ import { Product } from './pages/ProductPage';
 import ProductCard from './ProductCard';
 import supabase from './supabase';
 
-const perPage = 1;
+const perPage = 6;
 
 export async function productsLoader({ params }: { params: Params }) {
   const page = Number(params.page);
@@ -55,9 +55,10 @@ function ProductsSection() {
           })}
         </section>
       )}
+      {/* todo: move react paginate to its own file */}
       <ReactPaginate
         pageCount={pagesCount}
-        initialPage={page}
+        forcePage={page}
         pageRangeDisplayed={3}
         marginPagesDisplayed={0}
         onPageChange={handleChangePage}
