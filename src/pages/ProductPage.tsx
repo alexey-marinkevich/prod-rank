@@ -41,14 +41,8 @@ function ProductPage() {
     'https://qfwsyrybrxidfdqfjkui.supabase.co/storage/v1/object/public/product-images/';
   const navigate = useNavigate();
   const navigation = useNavigation();
-  const {
-    articleContent,
-    // created_at,  todo: Add date of creation
-    gallery,
-    headImage,
-    productName,
-    productSite,
-  }: Product = useLoaderData() as Awaited<ReturnType<typeof productLoader>>; // router has an issue here, temporary solution
+  const { articleContent, gallery, headImage, productName, productSite }: Product =
+    useLoaderData() as Awaited<ReturnType<typeof productLoader>>; // router has an issue here, temporary solution
 
   if (navigation.state === 'loading') {
     return <PageLoader />;

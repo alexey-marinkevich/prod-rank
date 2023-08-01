@@ -65,6 +65,7 @@ export async function suggestProductAction({ request }: { request: Request }) {
       })
     );
   }
+
   // create new item in db with submission params
   const { error } = await supabase.from('products').insert(submission);
   if (error) {
