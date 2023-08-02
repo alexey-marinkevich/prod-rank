@@ -4,9 +4,15 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import { HomePage, ErrorPage, SuggestProductPage, ProductPage } from './pages';
-import { productLoader } from './pages/ProductPage';
-import { suggestProductAction } from './pages/SuggestProductPage';
+
+import {
+  HomePage,
+  ErrorPage,
+  SuggestProductPage,
+  suggestProductAction,
+  ProductPage,
+  productLoader,
+} from './pages';
 import { ProductsSection, productsLoader } from './components';
 
 const router = createBrowserRouter(
