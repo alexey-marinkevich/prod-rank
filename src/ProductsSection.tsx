@@ -1,6 +1,6 @@
 import ReactPaginate from 'react-paginate';
 import { Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
-import { PageLoader } from './loadingComponents';
+import { PageLoader } from './pageLoader';
 import { Product } from './pages/ProductPage';
 import ProductCard from './ProductCard';
 import supabase from './supabase';

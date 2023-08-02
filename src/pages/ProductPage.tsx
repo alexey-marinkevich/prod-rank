@@ -3,7 +3,7 @@ import { GoGlobe } from 'react-icons/go';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 
 import supabase from '../supabase';
-import { PageLoader } from '../loadingComponents';
+import { PageLoader } from '../pageLoader';
 
 export async function productLoader({ params }: { params: Params }) {
   const { id } = params;
