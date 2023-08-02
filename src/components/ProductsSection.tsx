@@ -1,9 +1,9 @@
 import ReactPaginate from 'react-paginate';
 import { Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 import { PageLoader } from './pageLoader';
-import { Product } from './pages/ProductPage';
+import { Product } from '../pages/ProductPage';
 import ProductCard from './ProductCard';
-import supabase from './supabase';
+import supabase from '../supabase';
 
 const perPage = 6;
 
@@ -30,7 +30,7 @@ export async function productsLoader({ params }: { params: Params }) {
 function ProductsSection() {
   const { products, count, page } = useLoaderData() as Awaited<
     ReturnType<typeof productsLoader>
-  >; // router has an issue here, temporary solution;
+  >;
   const navigate = useNavigate();
   const navigation = useNavigation();
 
@@ -55,7 +55,7 @@ function ProductsSection() {
           })}
         </section>
       )}
-      {/* todo: move react paginate to its own file */}
+
       <ReactPaginate
         pageCount={pagesCount}
         forcePage={page}

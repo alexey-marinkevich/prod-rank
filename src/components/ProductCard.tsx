@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 //todo: fix props
 import { Link } from 'react-router-dom';
-import { Product } from './pages/ProductPage';
+import { Product } from '../pages/ProductPage';
 
 function ProductCard({ props }: { props: Product }) {
   const BASE_ROUTE =
