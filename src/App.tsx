@@ -7,7 +7,7 @@ import {
 import { HomePage, ErrorPage, SuggestProductPage, ProductPage } from './pages';
 import { productLoader } from './pages/ProductPage';
 import { suggestProductAction } from './pages/SuggestProductPage';
-import ProductsSection, { productsLoader } from './components/ProductsSection';
+import { ProductsSection, productsLoader } from './components';
 
 const router = createBrowserRouter(
   createRoutesFromElements(

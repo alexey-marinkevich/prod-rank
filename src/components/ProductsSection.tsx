@@ -1,8 +1,7 @@
 import ReactPaginate from 'react-paginate';
 import { Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
-import { PageLoader } from './pageLoader';
+import { PageLoader, ProductCard } from '../components';
 import { Product } from '../pages/ProductPage';
-import ProductCard from './ProductCard';
 import supabase from '../supabase';
 
 const perPage = 6;
