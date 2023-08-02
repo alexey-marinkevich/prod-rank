@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-//todo: fix props
 import { Link } from 'react-router-dom';
 import { Product } from '../pages/ProductPage';
 
