@@ -3,6 +3,7 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
+  Navigate,
 } from 'react-router-dom';
 
 import {
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
     <Route errorElement={<ErrorPage />}>
       <Route path="/" element={<HomePage />}>
         <Route path="/:page" element={<ProductsSection />} loader={productsLoader} />
+        <Route path="" element={<Navigate to="/0" />} />
       </Route>
       <Route
         path="/suggest"
