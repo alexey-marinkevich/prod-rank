@@ -98,9 +98,7 @@ function SuggestProductPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateProduct>({
-    resolver: yupResolver(schema),
-  });
+  } = useForm<CreateProduct>();
 
   const [imgSelected, setImgSelected] = useState<ImgSelected>({
     headImg: false,
@@ -133,7 +131,6 @@ function SuggestProductPage() {
           </span>
         </h1>
       </section>
-      {/* <form method="post" action="/suggest"> */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset disabled={navigation.state === 'submitting'}>
           <section className="mb-10">
