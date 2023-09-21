@@ -23,11 +23,13 @@ type CreateProduct = {
 };
 
 export async function suggestProductAction({ request }: { request: Request }) {
-  const { name, siteUrl, description } = Object.fromEntries(await request.formData());
+  const { productName, productSite, articleContent } = Object.fromEntries(
+    await request.formData()
+  );
   const submission: CreateProduct = {
-    productName: name,
-    productSite: siteUrl,
-    articleContent: description,
+    productName,
+    productSite,
+    articleContent,
     headImage: '',
     gallery: [],
   };
@@ -88,9 +90,9 @@ function SuggestProductPage() {
 
   const schema = yup
     .object({
-      name: yup.string().required().trim().max(50),
-      siteUrl: yup.string().url().required().trim(),
-      description: yup.string().required().trim().min(50),
+      productName: yup.string().required().trim().max(50),
+      productSite: yup.string().url().required().trim(),
+      articleContent: yup.string().required().trim().min(50),
     })
     .required();
 
@@ -98,7 +100,9 @@ function SuggestProductPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateProduct>();
+  } = useForm<CreateProduct>({
+    resolver: yupResolver(schema),
+  });
 
   const [imgSelected, setImgSelected] = useState<ImgSelected>({
     headImg: false,
