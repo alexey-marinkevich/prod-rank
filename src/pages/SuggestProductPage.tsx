@@ -253,12 +253,6 @@ function SuggestProductPage() {
                 'Submit'
               )}
             </button>
-            <Link
-              to="products/:id"
-              className="p-3 text-gray-500 transition-colors hover:text-black"
-            >
-              Show Preview
-            </Link>
           </section>
         </fieldset>
       </form>
