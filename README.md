@@ -6,12 +6,12 @@ Please, visit [Online Demo](https://prod-rank.vercel.app/) of Prod-Rank to see m
 ## Table of Contents
 
 - [About](#about)
-  - [The Main Goal of Prod-Rank?](#the-main-goal-of-prod-rank)
+  - [The Main Goal of Prod-Rank](#the-main-goal-of-prod-rank)
   - [The Prod-Rank Expirience](#the-prod-rank-expirience)
   - [Become Part of Our Community](#become-a-part-of-our-community)
 
 ## About
-### The Main Goal Of Prod-Rank?
+### The Main Goal Of Prod-Rank
 
 🌟 **Discover Hidden Gems**: Prod-Rank is committed to showcasing products that might not have mainstream attention but are truly exceptional. Find handcrafted goods, niche gadgets, and more.
 
