@@ -75,6 +75,9 @@ export async function suggestProductAction({ request }: { request: Request }) {
     throw new Error("Product wasn't saved");
   }
 
+  headImgFile = null;
+  galleryFiles = null;
+
   return redirect('/0');
 }
 
@@ -87,6 +90,11 @@ function SuggestProductPage() {
   const navigate = useNavigate();
   const navigation = useNavigation();
   const submit = useSubmit();
+
+  const [imgSelected, setImgSelected] = useState<ImgSelected>({
+    headImg: false,
+    gallery: false,
+  });
 
   const schema = yup
     .object({
@@ -102,11 +110,6 @@ function SuggestProductPage() {
     formState: { errors },
   } = useForm<CreateProduct>({
     resolver: yupResolver(schema),
-  });
-
-  const [imgSelected, setImgSelected] = useState<ImgSelected>({
-    headImg: false,
-    gallery: false,
   });
 
   const onSubmit = (data: any) => {
@@ -237,7 +240,6 @@ function SuggestProductPage() {
                 className="hidden"
               />
             </label>
-            {/* here will be gallery */}
           </section>
           <section className="m-auto grid gap-2 text-center sm:max-w-xs">
             <button
