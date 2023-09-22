@@ -73,7 +73,7 @@ function ProductPage() {
           </button>
         </header>
         <h1
-          className="text-writing-mode hidden max-h-[1200px] p-12 text-center text-6xl font-semibold
+          className="text-writing-mode hidden max-h-[1200px] p-12 text-center font-serif text-6xl font-semibold
           lg:col-[2_/_3] lg:row-[1_/_3] lg:block"
         >
           {productName}
@@ -95,10 +95,10 @@ function ProductPage() {
               <p>Explore Product</p>
             </a>
           </figure>
-          <h1 className="p-5 px-10 text-center text-4xl font-semibold lg:hidden">
+          <h1 className="p-5 px-10 text-center font-serif text-4xl font-semibold lg:hidden">
             {productName}
           </h1>
-          <p className="m-auto max-w-3xl p-2 pb-8 text-lg lg:relative lg:left-20 lg:p-10">
+          <p className="m-auto max-w-3xl p-2 pb-8 text-lg font-light lg:relative lg:left-20 lg:p-10">
             {articleContent}
           </p>
         </article>

@@ -123,13 +123,13 @@ function SuggestProductPage() {
         >
           <IoIosArrowRoundBack />
         </button>
-        <h1 className="relative text-lg md:text-right">
+        <h1 className="relative text-lg font-light md:text-right">
           Place where you can suggest interesting and good quality products of small or
           less popular companies to share with others and get to know about it more range
           of people
           <span
-            className="text-writing-mode absolute top-0 -right-28 -z-50 hidden whitespace-nowrap text-[120px]
-            font-extrabold text-neutral-200 lg:block"
+            className="text-writing-mode absolute top-0 -right-28 -z-50 hidden whitespace-nowrap font-serif
+            text-[120px] font-extrabold text-neutral-200 lg:block"
           >
             Suggest Product
           </span>
@@ -138,7 +138,7 @@ function SuggestProductPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset disabled={navigation.state === 'submitting'}>
           <section className="mb-10">
-            <h2 className="mb-4 text-2xl">Main Data</h2>
+            <h2 className="mb-4 font-serif text-3xl font-semibold">Main Data</h2>
             <div className="grid gap-4 gap-y-8 sm:grid-cols-2">
               <label className="relative">
                 <p className="absolute top-[-13px] left-4 bg-white px-1">Product Name</p>
@@ -207,7 +207,7 @@ function SuggestProductPage() {
             </div>
           </section>
           <section className="mb-20">
-            <h2 className="mb-4 text-2xl">Image Gallery</h2>
+            <h2 className="mb-4 font-serif text-3xl font-semibold">Image Gallery</h2>
             <p className="mb-2 sm:max-w-lg">
               Additional images to show more about product. Recommend to paste image url
               directly from the product site or other high quality site

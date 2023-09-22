@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import { Link } from 'react-router-dom';
 import { SiStarship } from 'react-icons/si';
 import { BiMessageRoundedAdd } from 'react-icons/bi';
@@ -19,7 +20,7 @@ function Header() {
           group-hover:scale-110 group-hover:text-red-700 lg:text-5xl"
         />
 
-        <p className="font-medium">Prod-Rank</p>
+        <p className="mt-1.5 font-handwritten text-2xl">Prod-Rank</p>
       </Link>
       <Link
         to="/suggest"
