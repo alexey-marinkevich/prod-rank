@@ -211,8 +211,8 @@ function SuggestProductPage() {
           </section>
           <section className="mb-20">
             <h2 className="mb-4 font-serif text-3xl font-semibold">Image Gallery</h2>
-            <p className="mb-2 sm:max-w-lg">
-              Additional images to show more about product. Recommend to paste image url
+            <p className="mb-2 font-light sm:max-w-lg">
+              Additional images to show more about product. Recommend to upload images
               directly from the product site or other high quality site
             </p>
             <label className="block w-full sm:w-[250px]">
