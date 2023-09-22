@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
+    "rootDir": "./",
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Node",
