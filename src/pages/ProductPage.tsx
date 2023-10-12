@@ -1,4 +1,4 @@
-import { Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
+import { type Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 import { GoGlobe } from 'react-icons/go';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 

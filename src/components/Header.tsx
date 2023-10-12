@@ -1,4 +1,4 @@
-/* eslint-disable tailwindcss/no-custom-classname */
+/* eslint-disable tailwindcss/no-custom-classname, tailwindcss/classnames-order */
 import { Link } from 'react-router-dom';
 import { SiStarship } from 'react-icons/si';
 import { BiMessageRoundedAdd } from 'react-icons/bi';
