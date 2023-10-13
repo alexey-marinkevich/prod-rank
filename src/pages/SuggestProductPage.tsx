@@ -111,9 +111,6 @@ function SuggestProductPage() {
   });
 
   const onSubmit = (data: Omit<ProductLike, 'gallery'>) => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log(data);
-    }
     submit(data, { action: '/suggest', method: 'post' });
   };
 
