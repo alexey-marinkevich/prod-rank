@@ -159,8 +159,8 @@ function SuggestProductPage() {
                   {...register('productName')}
                   required={!!errors.productName?.message}
                   autoFocus
-                  className="w-full rounded-md border-[3px] border-gray-400 p-3 outline-none required:border-red-500
-                 focus:border-black invalid:focus:border-red-500"
+                  className="w-full rounded-md border-2 border-gray-400 p-3 outline-none required:border-red-500 focus:border-black
+                 focus:shadow-[0px_0px_0px_1px_#000] required:focus:border-red-500 required:focus:shadow-[0px_0px_0px_1px_#EF4444]"
                 />
                 <p className="text-red-500 empty:hidden">{errors.productName?.message}</p>
               </label>
@@ -170,8 +170,8 @@ function SuggestProductPage() {
                   type="text"
                   required={!!errors.productSite?.message}
                   {...register('productSite')}
-                  className="w-full rounded-md border-[3px] border-gray-400 p-3 outline-none
-                 required:border-red-500 focus:border-black invalid:focus:border-red-500"
+                  className="w-full rounded-md border-2 border-gray-400 p-3 outline-none required:border-red-500 focus:border-black
+                 focus:shadow-[0px_0px_0px_1px_#000] required:focus:border-red-500 required:focus:shadow-[0px_0px_0px_1px_#EF4444]"
                 />
                 <p className="text-red-500 empty:hidden">{errors.productSite?.message}</p>
               </label>
@@ -209,8 +209,8 @@ function SuggestProductPage() {
                 <textarea
                   {...register('articleContent')}
                   required={!!errors.articleContent?.message}
-                  className="min-h-[300px] w-full resize-none rounded-md border-[3px] border-gray-400 p-3 outline-none required:border-red-500
-                  focus:border-black invalid:focus:border-red-500 sm:min-h-[200px]"
+                  className="min-h-[300px] w-full resize-none rounded-md border-2 border-gray-400 p-3 outline-none required:border-red-500 focus:border-black
+                  focus:shadow-[0px_0px_0px_1px_#000] required:focus:border-red-500 required:focus:shadow-[0px_0px_0px_1px_#EF4444] sm:min-h-[200px]"
                 />
                 <p className="text-red-500 empty:hidden">
                   {errors.articleContent?.message}
