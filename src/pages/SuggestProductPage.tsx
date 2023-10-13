@@ -111,6 +111,12 @@ function SuggestProductPage() {
         .required('Please, provide a product description')
         .min(50, 'Description should be more than 50 characters long')
         .trim(),
+      headImage: yup
+        .mixed()
+        .test('is-selected', 'Please, select a cover image', () => headImgFile != null),
+      gallery: yup
+        .mixed()
+        .test('is-selected', 'Please, add gallery images', () => galleryFiles != null),
     })
     .required();
 
@@ -176,7 +182,7 @@ function SuggestProductPage() {
                 <p className="text-red-500 empty:hidden">{errors.productSite?.message}</p>
               </label>
               <div>
-                <p className="mb-2">Main Image</p>
+                <p className="mb-2">Cover Image</p>
                 <label className="inline-block w-full sm:w-[250px]">
                   {!headImgFile ? (
                     <a className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95">
@@ -193,7 +199,7 @@ function SuggestProductPage() {
                   <input
                     type="file"
                     {...register('headImage')}
-                    accept="image/x-png,image/jpeg"
+                    accept="image/*"
                     className="hidden"
                     onChange={(e) => {
                       headImgFile = e.target.files && e.target.files[0];
@@ -201,6 +207,7 @@ function SuggestProductPage() {
                     }}
                   />
                 </label>
+                <p className="text-red-500 empty:hidden">{errors.headImage?.message}</p>
               </div>
               <label className="relative sm:col-span-2">
                 <p className="absolute top-[-13px] left-4 bg-white px-1">
@@ -239,7 +246,7 @@ function SuggestProductPage() {
               )}
               <input
                 type="file"
-                accept="image/x-png,image/jpeg"
+                accept="image/*"
                 {...register('gallery')}
                 multiple
                 onChange={(e) => {
@@ -249,6 +256,7 @@ function SuggestProductPage() {
                 className="hidden"
               />
             </label>
+            <p className="text-red-500 empty:hidden">{errors.gallery?.message}</p>
           </section>
           <section className="m-auto grid gap-2 text-center sm:max-w-xs">
             <button
