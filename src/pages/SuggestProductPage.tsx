@@ -96,9 +96,21 @@ function SuggestProductPage() {
 
   const schema = yup
     .object({
-      productName: yup.string().required().trim().max(50),
-      productSite: yup.string().url().required().trim(),
-      articleContent: yup.string().required().trim().min(50),
+      productName: yup
+        .string()
+        .required('Please, provide a name')
+        .max(50, 'Product name should be less than 50 characters long')
+        .trim(),
+      productSite: yup
+        .string()
+        .required('Please, provide a URL')
+        .url('Please, provide a valid URL')
+        .trim(),
+      articleContent: yup
+        .string()
+        .required('Please, provide a product description')
+        .min(50, 'Description should be more than 50 characters long')
+        .trim(),
     })
     .required();
 
