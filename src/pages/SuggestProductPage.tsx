@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { v4 as uuid } from 'uuid';
 
-import { Link, redirect, useNavigate, useNavigation, useSubmit } from 'react-router-dom';
+import { redirect, useNavigate, useNavigation, useSubmit } from 'react-router-dom';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { IoCheckmarkCircleOutline, IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
 import { CgSpinner } from 'react-icons/cg';
@@ -14,22 +14,20 @@ import supabase from '../supabase';
 let headImgFile: File | null;
 let galleryFiles: FileList | null;
 
-type CreateProduct = {
-  productName: FormDataEntryValue;
-  productSite: FormDataEntryValue;
-  articleContent: FormDataEntryValue;
+type ProductLike = {
+  productName: string;
+  productSite: string;
+  articleContent: string;
   headImage: string;
   gallery: string[];
 };
 
 export async function suggestProductAction({ request }: { request: Request }) {
-  const { productName, productSite, articleContent } = Object.fromEntries(
-    await request.formData()
-  );
-  const submission: CreateProduct = {
-    productName,
-    productSite,
-    articleContent,
+  const formData = Object.fromEntries(await request.formData());
+  const submission: ProductLike = {
+    productName: formData.productName as string,
+    productSite: formData.productSite as string,
+    articleContent: formData.articleContent as string,
     headImage: '',
     gallery: [],
   };
@@ -91,7 +89,7 @@ function SuggestProductPage() {
   const navigation = useNavigation();
   const submit = useSubmit();
 
-  const [imgSelected, setImgSelected] = useState<ImgSelected>({
+  const [, setImgSelected] = useState<ImgSelected>({
     headImg: false,
     gallery: false,
   });
@@ -108,12 +106,11 @@ function SuggestProductPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateProduct>({
+  } = useForm<ProductLike>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (data: Omit<ProductLike, 'gallery'>) => {
     submit(data, { action: '/suggest', method: 'post' });
   };
 

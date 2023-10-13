@@ -2,11 +2,12 @@
 import { Link } from 'react-router-dom';
 import { Product } from '../pages/ProductPage';
 
-function ProductCard({ props }: { props: Product }) {
-  const BASE_ROUTE =
-    'https://qfwsyrybrxidfdqfjkui.supabase.co/storage/v1/object/public/product-images/';
+const BASE_ROUTE =
+  'https://qfwsyrybrxidfdqfjkui.supabase.co/storage/v1/object/public/product-images/';
 
+function ProductCard({ props }: { props: Product }) {
   const { id, headImage, articleContent, productName } = props;
+
   return (
     <Link
       to={`/product/${id}`}
