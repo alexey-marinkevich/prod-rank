@@ -8,7 +8,7 @@ Please, visit [Online Demo](https://prod-rank.vercel.app/) of Prod-Rank to see m
 - [About](#about)
   - [The Main Goal of Prod-Rank](#the-main-goal-of-prod-rank)
   - [The Prod-Rank Expirience](#the-prod-rank-expirience)
-  - [Become Part of Our Community](#become-a-part-of-our-community)
+  - [Become Part of Our Community](#become-part-of-our-community)
 
 ## About
 ### The Main Goal Of Prod-Rank
@@ -21,7 +21,7 @@ Please, visit [Online Demo](https://prod-rank.vercel.app/) of Prod-Rank to see m
 
 🌎 **Expand Your Horizons**: Dive into a diverse array of products from various corners of the world. From artisanal crafts to cutting-edge technology, there's something for every taste.
 
-### The Prod-Rank Expirience
+### The Prod-Rank Experience
 
 1. **Explore**: Dive into our carefully curated selection of products from small and lesser-known businesses. Each item is chosen for its exceptional quality, uniqueness, and capacity to surprise and delight.
 
