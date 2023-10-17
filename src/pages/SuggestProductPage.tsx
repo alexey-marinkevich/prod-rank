@@ -109,7 +109,7 @@ function SuggestProductPage() {
       articleContent: yup
         .string()
         .required('Please, provide a product description')
-        .min(50, 'Description should be more than 50 characters long')
+        .min(500, 'Description should be more than 500 characters long')
         .trim(),
       headImage: yup
         .mixed()
@@ -130,6 +130,15 @@ function SuggestProductPage() {
 
   const onSubmit = (data: Omit<ProductLike, 'gallery'>) => {
     submit(data, { action: '/suggest', method: 'post' });
+  };
+
+  const handleAnchorKeyPress = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+    if (e.key === 'Enter') {
+      const fileInput = (e.target as HTMLElement).nextElementSibling as HTMLInputElement;
+      if (fileInput) {
+        fileInput.click();
+      }
+    }
   };
 
   return (
@@ -183,13 +192,21 @@ function SuggestProductPage() {
               </label>
               <div>
                 <p className="mb-2">Cover Image</p>
-                <label className="inline-block w-full sm:w-[250px]">
+                <label className="inline-block w-full sm:w-[250px] ">
                   {!headImgFile ? (
-                    <a className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95">
+                    <a
+                      tabIndex={0}
+                      onKeyDown={handleAnchorKeyPress}
+                      className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95"
+                    >
                       Select Image
                     </a>
                   ) : (
-                    <a className="block w-full cursor-pointer rounded-lg bg-green-600 p-3 text-center text-white transition-all hover:scale-95">
+                    <a
+                      tabIndex={0}
+                      onKeyDown={handleAnchorKeyPress}
+                      className="block w-full cursor-pointer rounded-lg bg-green-600 p-3 text-center text-white transition-all hover:scale-95"
+                    >
                       <span className="flex w-full items-center justify-center gap-1">
                         <IoCheckmarkCircleOutline className="text-2xl" />
                         <p>Image selected</p>
@@ -233,11 +250,19 @@ function SuggestProductPage() {
             </p>
             <label className="block w-full sm:w-[250px]">
               {!galleryFiles?.length ? (
-                <a className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95">
+                <a
+                  tabIndex={0}
+                  onKeyDown={handleAnchorKeyPress}
+                  className="block w-full cursor-pointer rounded-lg bg-black p-3 text-center text-white transition-all hover:scale-95"
+                >
                   Select Images
                 </a>
               ) : (
-                <a className="block w-full cursor-pointer rounded-lg bg-green-600 p-3 text-center text-white transition-all hover:scale-95">
+                <a
+                  tabIndex={0}
+                  onKeyDown={handleAnchorKeyPress}
+                  className="block w-full cursor-pointer rounded-lg bg-green-600 p-3 text-center text-white transition-all hover:scale-95"
+                >
                   <span className="flex w-full items-center justify-center gap-1">
                     <IoCheckmarkDoneCircleOutline className="text-2xl" />
                     <p>Images selected ({galleryFiles?.length})</p>
