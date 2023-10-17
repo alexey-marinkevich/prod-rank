@@ -73,14 +73,14 @@ function ProductPage() {
           </button>
         </header>
         <h1
-          className="text-writing-mode hidden max-h-[1200px] p-12 text-center font-serif text-6xl font-semibold
+          className="text-writing-mode hidden max-h-[1200px] p-12 text-center font-serif text-7xl font-semibold uppercase
           lg:col-[2_/_3] lg:row-[1_/_3] lg:block"
         >
           {productName}
         </h1>
         <article className="col-start-1 row-start-1 lg:col-[1_/_2] lg:row-[2_/_3]">
           <figure
-            className="flex h-screen flex-col-reverse items-center bg-cover bg-center lg:h-[90vh] lg:items-start"
+            className="flex h-screen flex-col-reverse items-center bg-cover bg-center lg:h-3/5 lg:items-start"
             style={{ backgroundImage: `url(${BASE_IMG_URL + headImage})` }}
           >
             <a
@@ -95,7 +95,7 @@ function ProductPage() {
               <p>Explore Product</p>
             </a>
           </figure>
-          <h1 className="p-5 px-10 text-center font-serif text-4xl font-semibold lg:hidden">
+          <h1 className="p-5 px-10 text-center font-serif text-4xl font-semibold uppercase lg:hidden">
             {productName}
           </h1>
           <p className="m-auto max-w-3xl p-2 pb-8 text-lg font-light lg:relative lg:left-20 lg:p-10">
@@ -103,12 +103,12 @@ function ProductPage() {
           </p>
         </article>
       </section>
-      <section className="mb-24 flex items-end gap-2 overflow-x-scroll px-1">
+      <section className="mb-24 flex flex-col gap-2 px-1 md:flex-row md:items-end md:overflow-x-scroll">
         {gallery?.map((imageUrl: string) => {
           return (
             <img
               key={gallery.indexOf(imageUrl)}
-              className="max-h-[600px] rounded-xl object-contain"
+              className="rounded-xl object-contain md:max-h-[600px]"
               src={BASE_IMG_URL + imageUrl}
               alt="Product Image"
             />

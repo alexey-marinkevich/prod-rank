@@ -27,8 +27,10 @@ function ProductCard({ props }: { props: Product }) {
           style={{ backgroundImage: `url(${BASE_ROUTE + headImage})` }}
         />
       </div>
-      <div className="h-1/3 overflow-hidden p-3 pb-6 lg:h-auto lg:w-1/2">
-        <h2 className="mb-1 font-serif text-2xl font-semibold">{productName}</h2>
+      <div className="h-1/3 overflow-hidden p-3 pb-6 lg:h-auto lg:w-1/2 lg:p-6">
+        <h2 className="mb-2.5 font-serif text-2xl font-semibold uppercase">
+          {productName}
+        </h2>
         <p className="h-4/5 overflow-hidden text-base font-light lg:h-[93%]">
           {articleContent}
         </p>
