@@ -246,7 +246,8 @@ function SuggestProductPage() {
             <h2 className="mb-4 font-serif text-3xl font-semibold">Image Gallery</h2>
             <p className="mb-2 font-light sm:max-w-lg">
               Additional images to show more about product. Recommend to upload images
-              directly from the product site or other high quality site
+              directly from the product site, or other site with high quality
+              representations of the product
             </p>
             <label className="block w-full sm:w-[250px]">
               {!galleryFiles?.length ? (
