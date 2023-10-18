@@ -11,6 +11,9 @@ module.exports = {
         serif: ['"Playfair Display"', ...defaultTheme.fontFamily.serif],
         handwritten: ['Allura', 'sans-serif'],
       },
+      screens: {
+        mouse: { raw: '(hover:hover)' },
+      },
     },
   },
   plugins: [],

@@ -13,7 +13,7 @@ function ProductCard({ props }: { props: Product }) {
       to={`/product/${id}`}
       className="
         group flex h-[600px] flex-col overflow-hidden rounded-3xl shadow-md transition-[transform,box-shadow] duration-500
-        hover:scale-95 hover:shadow-xl lg:h-[430px] lg:flex-row
+        lg:h-[430px] lg:flex-row mouse:hover:scale-95 mouse:hover:shadow-xl
       "
     >
       <div
@@ -23,7 +23,7 @@ function ProductCard({ props }: { props: Product }) {
         "
       >
         <div
-          className={`h-full w-full bg-cover transition-transform duration-500 group-hover:scale-105`}
+          className={`h-full w-full bg-cover transition-transform duration-500 mouse:group-hover:scale-105`}
           style={{ backgroundImage: `url(${BASE_ROUTE + headImage})` }}
         />
       </div>
