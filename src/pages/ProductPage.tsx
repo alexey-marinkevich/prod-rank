@@ -1,10 +1,12 @@
 import { type Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
+import supabase from '../supabase';
+
 import { GoGlobe } from 'react-icons/go';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { BsFillArrowUpSquareFill } from 'react-icons/bs';
 
-import supabase from '../supabase';
 import { PageLoader } from '../components';
+import { productsPerPage } from '../components/ProductsSection';
 
 const scrollToTop = () => {
   window.scrollTo({
@@ -65,16 +67,32 @@ const ProductPage = () => {
         .order('created_at', { ascending: false })
         .limit(1);
 
-      if (error) {
-        console.error('Error fetching next product ID:', error);
-      }
+      if (error) throw new Error(error.message);
 
       const nextProductId = (data && data[0]?.id) || null;
 
       navigate(`/product/${nextProductId}`);
     } catch (error) {
       console.error('An error occurred:', error);
-      // Handle the error appropriately
+      throw new Error('Something went wrong');
+    }
+  };
+
+  const returnHome = async () => {
+    try {
+      const { error, count } = await supabase
+        .from('products')
+        .select('*', { head: true, count: 'exact' })
+        .order('created_at', { ascending: false })
+        .gte('created_at', created_at);
+
+      if (error) throw new Error(error.message);
+
+      const page = Math.ceil(Number(count) / productsPerPage - 1);
+
+      navigate(`../${page}`);
+    } catch (error) {
+      throw new Error('Something went wrong');
     }
   };
 
@@ -93,7 +111,7 @@ const ProductPage = () => {
             className="rounded-lg border border-gray-700 bg-black/70 p-2 text-4xl text-white
             backdrop-blur-md transition-all duration-500 hover:border-gray-300
           hover:bg-white/40 hover:text-black hover:shadow-md lg:hidden"
-            onClick={() => navigate(-1)}
+            onClick={returnHome}
           >
             <IoIosArrowRoundBack />
           </button>
@@ -101,7 +119,7 @@ const ProductPage = () => {
           {/* button for large displays */}
           <button
             className="hidden p-4 text-7xl text-black transition-all hover:-translate-x-2 lg:block"
-            onClick={() => navigate(-1)}
+            onClick={returnHome}
           >
             <IoIosArrowRoundBack />
           </button>
@@ -159,7 +177,7 @@ const ProductPage = () => {
           <div className="text-sm font-light">Go to Top</div>
         </button>
 
-        <button onClick={nextProductLoad}>Next Product</button>
+        <button onClick={nextProductLoad}>Next Article</button>
       </section>
     </div>
   );
