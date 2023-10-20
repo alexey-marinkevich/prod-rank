@@ -73,22 +73,23 @@ function ProductPage() {
           </button>
         </header>
         <h1
-          className="text-writing-mode hidden max-h-[1200px] p-12 text-center font-serif text-7xl font-semibold uppercase
-          lg:col-[2_/_3] lg:row-[1_/_3] lg:block"
+          className="text-writing-mode hidden max-h-[1200px] p-12 text-center font-serif text-7xl font-semibold
+          uppercase lg:col-[2_/_3] lg:row-[1_/_3] lg:block"
         >
           {productName}
         </h1>
         <article className="col-start-1 row-start-1 lg:col-[1_/_2] lg:row-[2_/_3]">
           <figure
-            className="flex h-screen flex-col-reverse items-center bg-cover bg-center lg:h-3/5 lg:items-start"
+            className="flex h-[90vh] flex-col-reverse items-center bg-cover bg-center lg:h-3/5 lg:items-start"
             style={{ backgroundImage: `url(${BASE_IMG_URL + headImage})` }}
           >
             <a
               href={productSite}
               target="_blank"
               rel="noreferrer"
-              className="m-14 flex w-11/12 items-center justify-center gap-2 rounded-lg border border-gray-700 bg-black/70 p-3 text-center
-              align-baseline text-white backdrop-blur-md transition-all duration-500
+              className="m-14 flex w-11/12 items-center justify-center gap-2 rounded-lg border
+               border-gray-700 bg-black/70 p-3 text-center align-baseline text-white backdrop-blur-md
+               transition-all duration-500
               hover:border-gray-300 hover:bg-white/40 hover:text-black hover:shadow-md sm:max-w-xs lg:max-w-xs"
             >
               <GoGlobe className="text-2xl" />
