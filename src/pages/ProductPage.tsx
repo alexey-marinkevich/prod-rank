@@ -110,7 +110,6 @@ const ProductPage = () => {
         </article>
       </section>
       <section className="mb-12 flex flex-col gap-2 px-2 md:flex-row md:items-end md:overflow-x-scroll">
->>>>>>> Stashed changes
         {gallery?.map((imageUrl: string) => {
           return (
             <img
