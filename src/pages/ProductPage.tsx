@@ -41,7 +41,7 @@ export type Product = {
   productSite: string;
 };
 
-function ProductPage() {
+const ProductPage = () => {
   const BASE_IMG_URL =
     'https://qfwsyrybrxidfdqfjkui.supabase.co/storage/v1/object/public/product-images/';
   const navigate = useNavigate();
@@ -109,7 +109,8 @@ function ProductPage() {
           </p>
         </article>
       </section>
-      <section className="mb-12 flex flex-col gap-2 px-1 md:flex-row md:items-end md:overflow-x-scroll">
+      <section className="mb-12 flex flex-col gap-2 px-2 md:flex-row md:items-end md:overflow-x-scroll">
+>>>>>>> Stashed changes
         {gallery?.map((imageUrl: string) => {
           return (
             <img
@@ -124,7 +125,7 @@ function ProductPage() {
       <section className="flex justify-center">
         <button
           onClick={scrollToTop}
-          className="flex flex-col items-center p-3 text-gray-200 hover:text-gray-900"
+          className="flex flex-col items-center p-3 text-gray-200 transition-all hover:text-gray-900"
         >
           <BsFillArrowUpSquareFill className="text-5xl" />
           <div className="text-sm font-light">Go to Top</div>
@@ -132,6 +133,6 @@ function ProductPage() {
       </section>
     </div>
   );
-}
+};
 
 export default ProductPage;
