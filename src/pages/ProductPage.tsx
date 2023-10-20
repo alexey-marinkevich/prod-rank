@@ -2,8 +2,8 @@ import { type Params, useLoaderData, useNavigate, useNavigation } from 'react-ro
 import supabase from '../supabase';
 
 import { GoGlobe } from 'react-icons/go';
-import { IoIosArrowRoundBack } from 'react-icons/io';
-import { BsFillArrowUpSquareFill } from 'react-icons/bs';
+import { IoIosArrowRoundBack, IoIosArrowDown } from 'react-icons/io';
+// import { BsFillArrowUpSquareFill } from 'react-icons/bs';
 
 import { PageLoader } from '../components';
 import { productsPerPage } from '../components/ProductsSection';
@@ -95,7 +95,6 @@ const ProductPage = () => {
       const { error, count } = await supabase
         .from('products')
         .select('*', { head: true, count: 'exact' })
-        .order('created_at', { ascending: false })
         .gte('created_at', created_at);
 
       if (error) throw new Error(error.message);
@@ -168,7 +167,7 @@ const ProductPage = () => {
           </p>
         </article>
       </section>
-      <section className="mb-12 flex flex-col gap-2 px-2 md:flex-row md:items-end md:overflow-x-scroll">
+      <section className="mb-8 flex flex-col gap-2 px-2 md:flex-row md:items-end md:overflow-x-scroll">
         {gallery?.map((imageUrl: string) => {
           return (
             <img
@@ -180,16 +179,36 @@ const ProductPage = () => {
           );
         })}
       </section>
-      <section className="flex justify-center">
-        <button
+      <section className="flex justify-center p-2">
+        {/* <button
           onClick={scrollToTop}
           className="flex flex-col items-center p-3 text-gray-200 transition-all hover:text-black"
         >
           <BsFillArrowUpSquareFill className="text-5xl" />
-          <div className="text-sm font-light">Go to Top</div>
-        </button>
-
-        <button onClick={nextProductLoad}>Next Article</button>
+          <p className="text-sm font-light">Go to Top</p>
+        </button> */}
+        {!isLastArticle ? (
+          <button
+            onClick={nextArticleLoad}
+            className="flex w-full flex-col items-center p-3 text-black transition-all hover:text-gray-400"
+          >
+            <p className="text-lg font-medium uppercase">Next Article</p>
+            <IoIosArrowDown className="animate-bounce text-3xl" />
+          </button>
+        ) : (
+          <div className="flex flex-col">
+            <p className="text-lg font-light text-gray-400">That was the last article</p>
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center justify-center rounded-xl p-5 text-black
+              transition-all hover:bg-gray-200
+              "
+            >
+              <IoIosArrowDown className="relative right-2 rotate-90 text-2xl" />
+              <p className="relative right-2 font-medium uppercase">Go home</p>
+            </button>
+          </div>
+        )}
       </section>
     </div>
   );
