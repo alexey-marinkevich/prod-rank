@@ -46,8 +46,37 @@ const ProductPage = () => {
     'https://qfwsyrybrxidfdqfjkui.supabase.co/storage/v1/object/public/product-images/';
   const navigate = useNavigate();
   const navigation = useNavigation();
-  const { articleContent, gallery, headImage, productName, productSite }: Product =
-    useLoaderData() as Awaited<ReturnType<typeof productLoader>>; // router has an issue here, temporary solution
+
+  const {
+    articleContent,
+    gallery,
+    headImage,
+    productName,
+    productSite,
+    created_at,
+  }: Product = useLoaderData() as Awaited<ReturnType<typeof productLoader>>; // router has an issue here, temporary solution
+
+  const nextProductLoad = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('id')
+        .lt('created_at', created_at)
+        .order('created_at', { ascending: false })
+        .limit(1);
+
+      if (error) {
+        console.error('Error fetching next product ID:', error);
+      }
+
+      const nextProductId = (data && data[0]?.id) || null;
+
+      navigate(`/product/${nextProductId}`);
+    } catch (error) {
+      console.error('An error occurred:', error);
+      // Handle the error appropriately
+    }
+  };
 
   if (navigation.state === 'loading') {
     return <PageLoader />;
@@ -129,6 +158,8 @@ const ProductPage = () => {
           <BsFillArrowUpSquareFill className="text-5xl" />
           <div className="text-sm font-light">Go to Top</div>
         </button>
+
+        <button onClick={nextProductLoad}>Next Product</button>
       </section>
     </div>
   );
