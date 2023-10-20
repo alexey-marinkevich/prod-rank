@@ -13,7 +13,8 @@ function Header() {
       <div className="hidden lg:block"></div>
       <Link
         to="/0"
-        className="group flex items-center gap-1 p-4 pl-0 transition-all lg:flex-col lg:gap-0 lg:justify-self-center lg:pl-4"
+        className="group flex items-center gap-1 p-4 pl-0 transition-all lg:flex-col lg:gap-0
+          lg:justify-self-center lg:pl-4"
       >
         <SiStarship
           className=" text-4xl transition-all duration-500 ease-in-out
@@ -24,7 +25,8 @@ function Header() {
       </Link>
       <Link
         to="/suggest"
-        className="justify-self-end rounded-lg border-2 p-3 transition-all hover:border-black hover:bg-black hover:text-white"
+        className="justify-self-end rounded-lg bg-gray-100 p-3 text-zinc-900 transition-all
+        hover:border-black hover:bg-black hover:text-gray-100"
       >
         <BiMessageRoundedAdd className="text-3xl sm:hidden" />
         <p className="hidden sm:inline">Suggest Product</p>
