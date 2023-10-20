@@ -1,9 +1,17 @@
 import { type Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 import { GoGlobe } from 'react-icons/go';
 import { IoIosArrowRoundBack } from 'react-icons/io';
+import { BsFillArrowUpSquareFill } from 'react-icons/bs';
 
 import supabase from '../supabase';
 import { PageLoader } from '../components';
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
 
 export async function productLoader({ params }: { params: Params }) {
   const { id } = params;
@@ -18,10 +26,7 @@ export async function productLoader({ params }: { params: Params }) {
     throw new Error("Couldn't find the product");
   }
 
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
+  scrollToTop();
 
   return item;
 }
@@ -104,7 +109,7 @@ function ProductPage() {
           </p>
         </article>
       </section>
-      <section className="mb-24 flex flex-col gap-2 px-1 md:flex-row md:items-end md:overflow-x-scroll">
+      <section className="mb-12 flex flex-col gap-2 px-1 md:flex-row md:items-end md:overflow-x-scroll">
         {gallery?.map((imageUrl: string) => {
           return (
             <img
@@ -115,6 +120,15 @@ function ProductPage() {
             />
           );
         })}
+      </section>
+      <section className="flex justify-center">
+        <button
+          onClick={scrollToTop}
+          className="flex flex-col items-center p-3 text-gray-200 hover:text-gray-900"
+        >
+          <BsFillArrowUpSquareFill className="text-5xl" />
+          <div className="text-sm font-light">Go to Top</div>
+        </button>
       </section>
     </div>
   );
