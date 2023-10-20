@@ -24,13 +24,23 @@ export async function productLoader({ params }: { params: Params }) {
     .eq('id', id)
     .single();
 
+  const { count } = await supabase
+    .from('products')
+    .select('*', { head: true, count: 'exact' })
+    .lt('created_at', item.created_at);
+
+  const isLastArticle = Number(count) <= 0;
+
   if (error) {
     throw new Error("Couldn't find the product");
   }
 
   scrollToTop();
 
-  return item;
+  return {
+    ...item,
+    isLastArticle,
+  };
 }
 
 export type Product = {
@@ -41,6 +51,7 @@ export type Product = {
   created_at: string;
   gallery: string[];
   productSite: string;
+  isLastArticle: boolean;
 };
 
 const ProductPage = () => {
@@ -56,9 +67,10 @@ const ProductPage = () => {
     productName,
     productSite,
     created_at,
+    isLastArticle,
   }: Product = useLoaderData() as Awaited<ReturnType<typeof productLoader>>; // router has an issue here, temporary solution
 
-  const nextProductLoad = async () => {
+  const nextArticleLoad = async () => {
     try {
       const { data, error } = await supabase
         .from('products')
