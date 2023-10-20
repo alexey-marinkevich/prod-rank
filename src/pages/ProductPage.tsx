@@ -124,7 +124,7 @@ const ProductPage = () => {
       <section className="flex justify-center">
         <button
           onClick={scrollToTop}
-          className="flex flex-col items-center p-3 text-gray-200 transition-all hover:text-gray-900"
+          className="flex flex-col items-center p-3 text-gray-200 transition-all hover:text-black"
         >
           <BsFillArrowUpSquareFill className="text-5xl" />
           <div className="text-sm font-light">Go to Top</div>
