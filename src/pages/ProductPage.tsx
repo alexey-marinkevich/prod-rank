@@ -1,9 +1,17 @@
 import { type Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 import { GoGlobe } from 'react-icons/go';
 import { IoIosArrowRoundBack } from 'react-icons/io';
+import { BsFillArrowUpSquareFill } from 'react-icons/bs';
 
 import supabase from '../supabase';
 import { PageLoader } from '../components';
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
 
 export async function productLoader({ params }: { params: Params }) {
   const { id } = params;
@@ -18,10 +26,7 @@ export async function productLoader({ params }: { params: Params }) {
     throw new Error("Couldn't find the product");
   }
 
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
+  scrollToTop();
 
   return item;
 }
@@ -36,7 +41,7 @@ export type Product = {
   productSite: string;
 };
 
-function ProductPage() {
+const ProductPage = () => {
   const BASE_IMG_URL =
     'https://qfwsyrybrxidfdqfjkui.supabase.co/storage/v1/object/public/product-images/';
   const navigate = useNavigate();
@@ -73,22 +78,23 @@ function ProductPage() {
           </button>
         </header>
         <h1
-          className="text-writing-mode hidden max-h-[1200px] p-12 text-center font-serif text-7xl font-semibold uppercase
-          lg:col-[2_/_3] lg:row-[1_/_3] lg:block"
+          className="text-writing-mode hidden max-h-[1200px] p-12 text-center font-serif text-7xl font-semibold
+          uppercase lg:col-[2_/_3] lg:row-[1_/_3] lg:block"
         >
           {productName}
         </h1>
         <article className="col-start-1 row-start-1 lg:col-[1_/_2] lg:row-[2_/_3]">
           <figure
-            className="flex h-screen flex-col-reverse items-center bg-cover bg-center lg:h-3/5 lg:items-start"
+            className="flex h-[90vh] flex-col-reverse items-center bg-cover bg-center lg:h-3/5 lg:items-start"
             style={{ backgroundImage: `url(${BASE_IMG_URL + headImage})` }}
           >
             <a
               href={productSite}
               target="_blank"
               rel="noreferrer"
-              className="m-14 flex w-11/12 items-center justify-center gap-2 rounded-lg border border-gray-700 bg-black/70 p-3 text-center
-              align-baseline text-white backdrop-blur-md transition-all duration-500
+              className="m-14 flex w-11/12 items-center justify-center gap-2 rounded-lg border
+               border-gray-700 bg-black/70 p-3 text-center align-baseline text-white backdrop-blur-md
+               transition-all duration-500
               hover:border-gray-300 hover:bg-white/40 hover:text-black hover:shadow-md sm:max-w-xs lg:max-w-xs"
             >
               <GoGlobe className="text-2xl" />
@@ -103,7 +109,7 @@ function ProductPage() {
           </p>
         </article>
       </section>
-      <section className="mb-24 flex flex-col gap-2 px-1 md:flex-row md:items-end md:overflow-x-scroll">
+      <section className="mb-12 flex flex-col gap-2 px-2 md:flex-row md:items-end md:overflow-x-scroll">
         {gallery?.map((imageUrl: string) => {
           return (
             <img
@@ -115,8 +121,17 @@ function ProductPage() {
           );
         })}
       </section>
+      <section className="flex justify-center">
+        <button
+          onClick={scrollToTop}
+          className="flex flex-col items-center p-3 text-gray-200 transition-all hover:text-black"
+        >
+          <BsFillArrowUpSquareFill className="text-5xl" />
+          <div className="text-sm font-light">Go to Top</div>
+        </button>
+      </section>
     </div>
   );
-}
+};
 
 export default ProductPage;
