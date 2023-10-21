@@ -144,7 +144,7 @@ const ProductPage = () => {
         <article className="col-start-1 row-start-1 lg:col-[1_/_2] lg:row-[2_/_3]">
           <figure
             className="flex h-[90vh] flex-col-reverse items-center bg-cover bg-center
-            px-2 pb-4 lg:h-3/5 lg:items-start lg:rounded-[0_0.75rem_0.75rem_0] lg:pb-2"
+            px-2 pb-4 lg:h-3/5 lg:items-start lg:rounded-[0_0.75rem_0.75rem_0] lg:pb-2 2xl:rounded-xl"
             style={{ backgroundImage: `url(${BASE_IMG_URL + headImage})` }}
           >
             <a
