@@ -119,7 +119,7 @@ const ProductPage = () => {
           lg:col-end-3 lg:flex lg:h-auto lg:items-center lg:p-0"
         >
           <button
-            className="rounded-lg border border-gray-700 bg-black/70 p-2 text-4xl text-white
+            className="rounded-lg border border-gray-700 bg-black/70 p-3 text-4xl text-white
             backdrop-blur-md transition-all duration-500 hover:border-gray-300
           hover:bg-white/40 hover:text-black hover:shadow-md lg:hidden"
             onClick={returnHome}
@@ -143,14 +143,15 @@ const ProductPage = () => {
         </h1>
         <article className="col-start-1 row-start-1 lg:col-[1_/_2] lg:row-[2_/_3]">
           <figure
-            className="flex h-[90vh] flex-col-reverse items-center bg-cover bg-center lg:h-3/5 lg:items-start"
+            className="flex h-[90vh] flex-col-reverse items-center bg-cover bg-center
+            px-2 pb-4 lg:h-3/5 lg:items-start lg:rounded-[0_0.75rem_0.75rem_0] lg:pb-2 2xl:rounded-xl"
             style={{ backgroundImage: `url(${BASE_IMG_URL + headImage})` }}
           >
             <a
               href={productSite}
               target="_blank"
               rel="noreferrer"
-              className="m-14 flex w-11/12 items-center justify-center gap-2 rounded-lg border
+              className="flex w-full items-center justify-center gap-2 rounded-lg border
                border-gray-700 bg-black/70 p-3 text-center align-baseline text-white backdrop-blur-md
                transition-all duration-500
               hover:border-gray-300 hover:bg-white/40 hover:text-black hover:shadow-md sm:max-w-xs lg:max-w-xs"
@@ -192,20 +193,20 @@ const ProductPage = () => {
             onClick={nextArticleLoad}
             className="flex w-full flex-col items-center p-3 text-black transition-all hover:text-gray-400"
           >
-            <p className="text-lg font-medium uppercase">Next Article</p>
+            <p className="font-medium uppercase">Read Next Article</p>
             <IoIosArrowDown className="animate-bounce text-3xl" />
           </button>
         ) : (
           <div className="flex flex-col">
-            <p className="text-lg font-light text-gray-400">That was the last article</p>
+            <p className="font-light text-gray-400">That was the last article</p>
             <button
               onClick={() => navigate('/')}
-              className="flex items-center justify-center rounded-xl p-5 text-black
+              className="group flex items-center justify-center rounded-xl p-5 text-black
               transition-all hover:bg-gray-200
               "
             >
-              <IoIosArrowDown className="relative right-2 rotate-90 text-2xl" />
-              <p className="relative right-2 font-medium uppercase">Go home</p>
+              <IoIosArrowDown className="relative right-2 rotate-90 animate-pulse text-2xl group-hover:animate-none" />
+              <p className="relative right-2 font-medium uppercase">Go Home</p>
             </button>
           </div>
         )}
