@@ -4,7 +4,6 @@ import {
   Route,
   RouterProvider,
   Navigate,
-  Outlet,
 } from 'react-router-dom';
 
 import {
@@ -14,20 +13,14 @@ import {
   suggestProductAction,
   ProductPage,
   productLoader,
+  LayoutPage,
 } from './pages';
-import { Footer, ProductsSection, productsLoader } from './components';
-
-const Layout = () => (
-  <div>
-    <Outlet />
-    <Footer />
-  </div>
-);
+import { ProductsSection, productsLoader } from './components';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<ErrorPage />}>
-      <Route element={<Layout />}>
+      <Route element={<LayoutPage />}>
         <Route path="/" element={<HomePage />}>
           <Route path="/:page" element={<ProductsSection />} loader={productsLoader} />
           <Route path="" element={<Navigate to="/0" />} />

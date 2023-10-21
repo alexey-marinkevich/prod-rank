@@ -3,7 +3,11 @@ import { FaLinkedin, FaGithubSquare } from 'react-icons/fa';
 
 const Footer = () => (
   <section className="p-2">
-    <footer className="m-auto flex max-w-7xl flex-col items-center rounded-3xl bg-black  p-10 text-white sm:flex-row sm:justify-between">
+    <footer
+      id="footer"
+      className="m-auto flex max-w-7xl flex-col items-center rounded-3xl bg-black  p-10 text-white
+      sm:flex-row sm:justify-between"
+    >
       <a
         className="flex"
         href="https://github.com/alexey-marinkevich/prod-rank#welcome-to-prod-rank"

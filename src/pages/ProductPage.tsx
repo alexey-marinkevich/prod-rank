@@ -3,17 +3,10 @@ import supabase from '../supabase';
 
 import { GoGlobe } from 'react-icons/go';
 import { IoIosArrowRoundBack, IoIosArrowDown } from 'react-icons/io';
-// import { BsFillArrowUpSquareFill } from 'react-icons/bs';
 
 import { PageLoader } from '../components';
 import { productsPerPage } from '../components/ProductsSection';
-
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth',
-  });
-};
+import { scrollToTop } from '../utilities';
 
 export async function productLoader({ params }: { params: Params }) {
   const { id } = params;
@@ -181,13 +174,6 @@ const ProductPage = () => {
         })}
       </section>
       <section className="flex justify-center p-2">
-        {/* <button
-          onClick={scrollToTop}
-          className="flex flex-col items-center p-3 text-gray-200 transition-all hover:text-black"
-        >
-          <BsFillArrowUpSquareFill className="text-5xl" />
-          <p className="text-sm font-light">Go to Top</p>
-        </button> */}
         {!isLastArticle ? (
           <button
             onClick={nextArticleLoad}
