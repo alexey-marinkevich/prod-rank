@@ -1,10 +1,12 @@
 import { type Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
-import { GoGlobe } from 'react-icons/go';
-import { IoIosArrowRoundBack } from 'react-icons/io';
-import { BsFillArrowUpSquareFill } from 'react-icons/bs';
-
 import supabase from '../supabase';
+
+import { GoGlobe } from 'react-icons/go';
+import { IoIosArrowRoundBack, IoIosArrowDown } from 'react-icons/io';
+// import { BsFillArrowUpSquareFill } from 'react-icons/bs';
+
 import { PageLoader } from '../components';
+import { productsPerPage } from '../components/ProductsSection';
 
 const scrollToTop = () => {
   window.scrollTo({
@@ -22,13 +24,23 @@ export async function productLoader({ params }: { params: Params }) {
     .eq('id', id)
     .single();
 
+  const { count } = await supabase
+    .from('products')
+    .select('*', { head: true, count: 'exact' })
+    .lt('created_at', item.created_at);
+
+  const isLastArticle = Number(count) <= 0;
+
   if (error) {
     throw new Error("Couldn't find the product");
   }
 
   scrollToTop();
 
-  return item;
+  return {
+    ...item,
+    isLastArticle,
+  };
 }
 
 export type Product = {
@@ -39,6 +51,7 @@ export type Product = {
   created_at: string;
   gallery: string[];
   productSite: string;
+  isLastArticle: boolean;
 };
 
 const ProductPage = () => {
@@ -46,8 +59,53 @@ const ProductPage = () => {
     'https://qfwsyrybrxidfdqfjkui.supabase.co/storage/v1/object/public/product-images/';
   const navigate = useNavigate();
   const navigation = useNavigation();
-  const { articleContent, gallery, headImage, productName, productSite }: Product =
-    useLoaderData() as Awaited<ReturnType<typeof productLoader>>; // router has an issue here, temporary solution
+
+  const {
+    articleContent,
+    gallery,
+    headImage,
+    productName,
+    productSite,
+    created_at,
+    isLastArticle,
+  }: Product = useLoaderData() as Awaited<ReturnType<typeof productLoader>>; // router has an issue here, temporary solution
+
+  const nextArticleLoad = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('id')
+        .lt('created_at', created_at)
+        .order('created_at', { ascending: false })
+        .limit(1);
+
+      if (error) throw new Error(error.message);
+
+      const nextProductId = (data && data[0]?.id) || null;
+
+      navigate(`/product/${nextProductId}`);
+    } catch (error) {
+      console.error('An error occurred:', error);
+      throw new Error('Something went wrong');
+    }
+  };
+
+  const returnHome = async () => {
+    try {
+      const { error, count } = await supabase
+        .from('products')
+        .select('*', { head: true, count: 'exact' })
+        .gte('created_at', created_at);
+
+      if (error) throw new Error(error.message);
+
+      const page = Math.ceil(Number(count) / productsPerPage - 1);
+
+      navigate(`../${page}`);
+    } catch (error) {
+      throw new Error('Something went wrong');
+    }
+  };
 
   if (navigation.state === 'loading') {
     return <PageLoader />;
@@ -64,7 +122,7 @@ const ProductPage = () => {
             className="rounded-lg border border-gray-700 bg-black/70 p-2 text-4xl text-white
             backdrop-blur-md transition-all duration-500 hover:border-gray-300
           hover:bg-white/40 hover:text-black hover:shadow-md lg:hidden"
-            onClick={() => navigate(-1)}
+            onClick={returnHome}
           >
             <IoIosArrowRoundBack />
           </button>
@@ -72,7 +130,7 @@ const ProductPage = () => {
           {/* button for large displays */}
           <button
             className="hidden p-4 text-7xl text-black transition-all hover:-translate-x-2 lg:block"
-            onClick={() => navigate(-1)}
+            onClick={returnHome}
           >
             <IoIosArrowRoundBack />
           </button>
@@ -109,7 +167,7 @@ const ProductPage = () => {
           </p>
         </article>
       </section>
-      <section className="mb-12 flex flex-col gap-2 px-2 md:flex-row md:items-end md:overflow-x-scroll">
+      <section className="mb-8 flex flex-col gap-2 px-2 md:flex-row md:items-end md:overflow-x-scroll">
         {gallery?.map((imageUrl: string) => {
           return (
             <img
@@ -121,14 +179,36 @@ const ProductPage = () => {
           );
         })}
       </section>
-      <section className="flex justify-center">
-        <button
+      <section className="flex justify-center p-2">
+        {/* <button
           onClick={scrollToTop}
           className="flex flex-col items-center p-3 text-gray-200 transition-all hover:text-black"
         >
           <BsFillArrowUpSquareFill className="text-5xl" />
-          <div className="text-sm font-light">Go to Top</div>
-        </button>
+          <p className="text-sm font-light">Go to Top</p>
+        </button> */}
+        {!isLastArticle ? (
+          <button
+            onClick={nextArticleLoad}
+            className="flex w-full flex-col items-center p-3 text-black transition-all hover:text-gray-400"
+          >
+            <p className="text-lg font-medium uppercase">Next Article</p>
+            <IoIosArrowDown className="animate-bounce text-3xl" />
+          </button>
+        ) : (
+          <div className="flex flex-col">
+            <p className="text-lg font-light text-gray-400">That was the last article</p>
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center justify-center rounded-xl p-5 text-black
+              transition-all hover:bg-gray-200
+              "
+            >
+              <IoIosArrowDown className="relative right-2 rotate-90 text-2xl" />
+              <p className="relative right-2 font-medium uppercase">Go home</p>
+            </button>
+          </div>
+        )}
       </section>
     </div>
   );

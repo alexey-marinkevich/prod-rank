@@ -4,12 +4,12 @@ import { PageLoader, ProductCard } from '../components';
 import { Product } from '../pages/ProductPage';
 import supabase from '../supabase';
 
-const perPage = 6;
+export const productsPerPage = 6;
 
 export async function productsLoader({ params }: { params: Params }) {
   const page = Number(params.page);
-  const fromItem = page * perPage;
-  const toItem = fromItem + perPage - 1;
+  const fromItem = page * productsPerPage;
+  const toItem = fromItem + productsPerPage - 1;
 
   const { data, error, count } = await supabase
     .from('products')
@@ -33,7 +33,7 @@ function ProductsSection() {
   const navigate = useNavigate();
   const navigation = useNavigation();
 
-  const pagesCount: number = Math.ceil(Number(count) / perPage);
+  const pagesCount: number = Math.ceil(Number(count) / productsPerPage);
 
   function handleChangePage({ selected }: { selected: number }) {
     navigate(`/${selected}`);
