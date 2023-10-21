@@ -119,7 +119,7 @@ const ProductPage = () => {
           lg:col-end-3 lg:flex lg:h-auto lg:items-center lg:p-0"
         >
           <button
-            className="rounded-lg border border-gray-700 bg-black/70 p-2 text-4xl text-white
+            className="rounded-lg border border-gray-700 bg-black/70 p-3 text-4xl text-white
             backdrop-blur-md transition-all duration-500 hover:border-gray-300
           hover:bg-white/40 hover:text-black hover:shadow-md lg:hidden"
             onClick={returnHome}
