@@ -7,10 +7,12 @@ const LayoutPage = () => {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Calculate scroll position
-      const scrollHeight = window.scrollY;
+    const button = document.getElementById('goTopBtn');
+    const footer = document.getElementById('footer');
+    const viewport = window.innerHeight;
+    const scrollHeight = window.scrollY;
 
+    const handleScroll = () => {
       // Update button visibility based on scroll position
       if (scrollHeight > 800) return setShowButton(true);
 
@@ -18,10 +20,6 @@ const LayoutPage = () => {
     };
 
     const adjustButtonPosition = () => {
-      const button = document.getElementById('goTopBtn');
-      const footer = document.getElementById('footer');
-      const viewport = window.innerHeight;
-
       if (button && footer) {
         const footerRect = footer.getBoundingClientRect();
 
