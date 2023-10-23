@@ -11,7 +11,7 @@ function ProductCard({ props }: { props: Product }) {
   return (
     <Link
       to={`/product/${id}`}
-      className="group flex h-[86vh] snap-center snap-always flex-col overflow-hidden rounded-3xl shadow-md transition-[transform,box-shadow]
+      className="group flex h-[86vh] snap-start snap-always scroll-mt-3 flex-col overflow-hidden rounded-3xl shadow-md transition-[transform,box-shadow]
       duration-500 md:h-[600px] md:snap-align-none md:snap-normal lg:h-[430px]
       lg:flex-row mouse:hover:scale-95 mouse:hover:shadow-xl
       "

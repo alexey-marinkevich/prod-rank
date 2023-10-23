@@ -40,7 +40,7 @@ function ProductsSection() {
 
     const prodSectionScroll = () => {
       if (prodSection && navBar) {
-        if (prodSection.scrollTop < 15) {
+        if (prodSection.scrollTop < 30) {
           navBar.style.transform = 'translateY(0)';
         }
         if (prodSection?.scrollTop > 500) {
@@ -73,7 +73,7 @@ function ProductsSection() {
       ) : (
         <section
           id="products-section"
-          className="m-auto grid h-[100vh]  max-w-7xl snap-y snap-mandatory gap-5
+          className="m-auto grid h-[100vh] max-w-7xl snap-y snap-mandatory gap-5
           overflow-scroll px-2 py-7 md:h-auto md:snap-none md:grid-cols-2
            md:overflow-auto lg:grid-cols-1"
         >
