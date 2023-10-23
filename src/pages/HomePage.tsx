@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '../components';
+import { NavBar } from '../components';
 
 function HomePage() {
   return (
-    <>
-      <Header />
+    <section className="snap-y snap-mandatory md:snap-none">
+      <NavBar />
       <Outlet />
-    </>
+    </section>
   );
 }
 
