@@ -18,7 +18,7 @@ const LayoutPage = () => {
     };
 
     const adjustButtonPosition = () => {
-      const button = document.getElementById('goTopBtn');
+      const button = document.getElementById('go-top-btn');
       const footer = document.getElementById('footer');
       const viewport = window.innerHeight;
 
@@ -26,7 +26,7 @@ const LayoutPage = () => {
         const footerRect = footer.getBoundingClientRect();
 
         if (footerRect.top < viewport) {
-          const offset = viewport - footerRect.top + 40;
+          const offset = viewport - footerRect.top + 20;
           return (button.style.bottom = offset + 'px');
         }
 
