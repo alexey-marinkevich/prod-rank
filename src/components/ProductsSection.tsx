@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import { Params, useLoaderData, useNavigate, useNavigation } from 'react-router-dom';
 import { PageLoader, ProductCard } from '../components';
@@ -15,7 +16,6 @@ export async function productsLoader({ params }: { params: Params }) {
     .from('products')
     .select('*', { count: 'exact' })
     .order('created_at', { ascending: false })
-    .eq('reviewed', false) // todo: change to true
     .range(fromItem, toItem);
   if (error) throw new Error('Could not fetch the products');
 
@@ -32,8 +32,32 @@ function ProductsSection() {
   >;
   const navigate = useNavigate();
   const navigation = useNavigation();
-
   const pagesCount: number = Math.ceil(Number(count) / productsPerPage);
+
+  useEffect(() => {
+    const prodSection = document.getElementById('products-section');
+    const navBar = document.getElementById('nav-bar');
+
+    const prodSectionScroll = () => {
+      if (prodSection && navBar) {
+        if (prodSection.scrollTop < 15) {
+          navBar.style.transform = 'translateY(0)';
+        }
+        if (prodSection?.scrollTop > 500) {
+          navBar.style.transform = 'translateY(-20rem)';
+        }
+      }
+
+      window.scrollTo(0, 0);
+    };
+    prodSection?.addEventListener('scroll', prodSectionScroll);
+    prodSection?.addEventListener('resize', prodSectionScroll);
+
+    return () => {
+      prodSection?.removeEventListener('scroll', prodSectionScroll);
+      prodSection?.removeEventListener('resize', prodSectionScroll);
+    };
+  }, []);
 
   function handleChangePage({ selected }: { selected: number }) {
     navigate(`/${selected}`);
@@ -47,7 +71,12 @@ function ProductsSection() {
       {navigation.state === 'loading' ? (
         <PageLoader />
       ) : (
-        <section className="m-auto grid max-w-7xl gap-5 px-2 py-7 md:grid-cols-2 lg:grid-cols-1">
+        <section
+          id="products-section"
+          className="m-auto grid h-[100vh]  max-w-7xl snap-y snap-mandatory gap-5
+          overflow-scroll px-2 py-7 md:h-auto md:snap-none md:grid-cols-2
+           md:overflow-auto lg:grid-cols-1"
+        >
           {products.map((product: Product) => {
             return <ProductCard key={product.id} props={product} />;
           })}
