@@ -2,11 +2,11 @@ import { DiGithubFull, DiGithubBadge } from 'react-icons/di';
 import { FaLinkedin, FaGithubSquare } from 'react-icons/fa';
 
 const Footer = () => (
-  <section className="p-2">
+  <section className="snap-end snap-always p-2 md:snap-align-none md:snap-normal">
     <footer
       id="footer"
-      className="m-auto flex max-w-7xl snap-center snap-always flex-col items-center  rounded-3xl bg-black
-      p-10 text-white sm:flex-row sm:justify-between md:snap-align-none md:snap-normal"
+      className="m-auto flex max-w-7xl  flex-col items-center  rounded-3xl bg-black
+      p-10 text-white sm:flex-row sm:justify-between "
     >
       <a
         target="_blank"
