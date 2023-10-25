@@ -7,12 +7,14 @@ const LayoutPage = () => {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
+    const layout = document.getElementById('layout-page');
+
     const handleScroll = () => {
       // Calculate scroll position
-      const scrollHeight = window.scrollY;
+      const scrollHeight = layout?.scrollTop;
 
       // Update button visibility based on scroll position
-      if (scrollHeight > 800) return setShowButton(true);
+      if (scrollHeight && scrollHeight > 800) return setShowButton(true);
 
       return setShowButton(false);
     };
@@ -27,6 +29,7 @@ const LayoutPage = () => {
 
         if (footerRect.top < viewport) {
           const offset = viewport - footerRect.top + 20;
+
           return (button.style.bottom = offset + 'px');
         }
 
@@ -34,20 +37,23 @@ const LayoutPage = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('scroll', adjustButtonPosition);
-    window.addEventListener('resize', adjustButtonPosition);
+    layout?.addEventListener('scroll', handleScroll);
+    layout?.addEventListener('scroll', adjustButtonPosition);
+    layout?.addEventListener('resize', adjustButtonPosition);
 
     // Clean up the event listener when the component unmounts
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scroll', adjustButtonPosition);
-      window.removeEventListener('resize', adjustButtonPosition);
+      layout?.removeEventListener('scroll', handleScroll);
+      layout?.removeEventListener('scroll', adjustButtonPosition);
+      layout?.removeEventListener('resize', adjustButtonPosition);
     };
   }, []);
 
   return (
-    <div>
+    <div
+      id="layout-page"
+      className="h-[100vh] snap-y snap-mandatory overflow-scroll md:snap-none"
+    >
       <Outlet />
       <Footer />
       {showButton && <ScrollBtn />}
