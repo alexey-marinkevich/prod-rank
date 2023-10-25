@@ -3,7 +3,7 @@ import { NavBar } from '../components';
 
 function HomePage() {
   return (
-    <section className="snap-y snap-mandatory md:snap-none">
+    <section>
       <NavBar />
       <Outlet />
     </section>
