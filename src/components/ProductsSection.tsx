@@ -89,10 +89,7 @@ function ProductsSection() {
         </section>
       )}
 
-      <section
-        id="pagination"
-        className="snap-center snap-always md:snap-align-none md:snap-normal"
-      >
+      <section>
         <ReactPaginate
           pageCount={pagesCount}
           forcePage={page}
