@@ -9,6 +9,8 @@ const Footer = () => (
       sm:flex-row sm:justify-between"
     >
       <a
+        target="_blank"
+        rel="noreferrer"
         className="flex"
         href="https://github.com/alexey-marinkevich/prod-rank#welcome-to-prod-rank"
       >
