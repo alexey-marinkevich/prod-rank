@@ -81,7 +81,7 @@ function ProductsSection() {
       ) : (
         <section
           id="products-section"
-          className="m-auto grid max-w-7xl gap-5 px-2 pt-0 pb-7 md:grid-cols-2 md:pt-7 lg:grid-cols-1"
+          className="m-auto grid max-w-7xl gap-5 px-2 py-7 md:grid-cols-2 lg:grid-cols-1"
         >
           {products.map((product: Product) => {
             return <ProductCard key={product.id} props={product} />;
@@ -89,7 +89,7 @@ function ProductsSection() {
         </section>
       )}
 
-      <section>
+      <section className="snap-center snap-always md:snap-align-none md:snap-normal">
         <ReactPaginate
           pageCount={pagesCount}
           forcePage={page}
