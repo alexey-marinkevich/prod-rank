@@ -4,7 +4,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { v4 as uuid } from 'uuid';
 
-import { redirect, useNavigate, useNavigation, useSubmit } from 'react-router-dom';
+import {
+  redirect,
+  useLoaderData,
+  useNavigate,
+  useNavigation,
+  useSubmit,
+} from 'react-router-dom';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { IoCheckmarkCircleOutline, IoCheckmarkDoneCircleOutline } from 'react-icons/io5';
 import { CgSpinner } from 'react-icons/cg';
@@ -22,7 +28,12 @@ type ProductLike = {
   gallery: string[];
 };
 
-export async function suggestProductAction({ request }: { request: Request }) {
+export const suggestProductLoader = () => {
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  return { isMobile };
+};
+
+export const suggestProductAction = async ({ request }: { request: Request }) => {
   const formData = Object.fromEntries(await request.formData());
   const submission: ProductLike = {
     productName: formData.productName as string,
@@ -77,17 +88,20 @@ export async function suggestProductAction({ request }: { request: Request }) {
   galleryFiles = null;
 
   return redirect('/0');
-}
+};
 
 type ImgSelected = {
   headImg?: boolean;
   gallery?: boolean;
 };
 
-function SuggestProductPage() {
+const SuggestProductPage = () => {
   const navigate = useNavigate();
   const navigation = useNavigation();
   const submit = useSubmit();
+  const { isMobile } = useLoaderData() as Awaited<
+    ReturnType<typeof suggestProductLoader>
+  >;
 
   const [, setImgSelected] = useState<ImgSelected>({
     headImg: false,
@@ -173,7 +187,7 @@ function SuggestProductPage() {
                   type="text"
                   {...register('productName')}
                   required={!!errors.productName?.message}
-                  autoFocus
+                  autoFocus={!isMobile}
                   className="w-full rounded-md border-2 border-gray-400 p-3 outline-none required:border-red-500 focus:border-black
                  focus:shadow-[0px_0px_0px_1px_#000] required:focus:border-red-500 required:focus:shadow-[0px_0px_0px_1px_#EF4444]"
                 />
@@ -303,6 +317,6 @@ function SuggestProductPage() {
       </form>
     </div>
   );
-}
+};
 
 export default SuggestProductPage;
