@@ -16,6 +16,7 @@ import {
   LayoutPage,
 } from './pages';
 import { ProductsSection, productsLoader } from './components';
+import { suggestProductLoader } from './pages/SuggestProductPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
           path="/suggest"
           element={<SuggestProductPage />}
           action={suggestProductAction}
+          loader={suggestProductLoader}
         />
         <Route path="/product/:id" element={<ProductPage />} loader={productLoader} />
       </Route>
