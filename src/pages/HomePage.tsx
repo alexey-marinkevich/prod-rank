@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import { Header } from '../components';
+import { NavBar } from '../components';
 
 function HomePage() {
   return (
-    <>
-      <Header />
+    <section>
+      <NavBar />
       <Outlet />
-    </>
+    </section>
   );
 }
 

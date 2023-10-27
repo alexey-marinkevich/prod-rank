@@ -5,10 +5,12 @@ const Footer = () => (
   <section className="p-2">
     <footer
       id="footer"
-      className="m-auto flex max-w-7xl flex-col items-center rounded-3xl bg-black  p-10 text-white
-      sm:flex-row sm:justify-between"
+      className="m-auto flex max-w-7xl  flex-col items-center  rounded-3xl bg-black
+      p-10 text-white sm:flex-row sm:justify-between "
     >
       <a
+        target="_blank"
+        rel="noreferrer"
         className="flex"
         href="https://github.com/alexey-marinkevich/prod-rank#welcome-to-prod-rank"
       >
