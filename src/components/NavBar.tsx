@@ -7,7 +7,7 @@ function NavBar() {
   return (
     <section
       id="nav-bar"
-      className="absolute z-50 m-auto w-full max-w-7xl p-1 transition-all duration-1000 md:relative md:p-0"
+      className="fixed z-50 m-auto w-full max-w-7xl p-1 transition-all duration-1000 md:relative md:relative md:p-0"
     >
       <nav
         className="m-auto grid grid-cols-2 place-content-center items-center

@@ -2,7 +2,7 @@ import { DiGithubFull, DiGithubBadge } from 'react-icons/di';
 import { FaLinkedin, FaGithubSquare } from 'react-icons/fa';
 
 const Footer = () => (
-  <section className="snap-end snap-always p-2 pb-32 md:snap-align-none md:snap-normal">
+  <section className="p-2">
     <footer
       id="footer"
       className="m-auto flex max-w-7xl  flex-col items-center  rounded-3xl bg-black

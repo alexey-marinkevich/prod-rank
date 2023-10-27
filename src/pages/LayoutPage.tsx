@@ -52,7 +52,8 @@ const LayoutPage = () => {
   return (
     <div
       id="layout-page"
-      className="h-[100vh] snap-y snap-mandatory overflow-scroll md:snap-none"
+      className="absolute top-0 left-0 h-full snap-y snap-mandatory overflow-x-hidden overflow-y-scroll md:relative md:h-[100vh]
+      md:snap-none"
     >
       <Outlet />
       <Footer />
